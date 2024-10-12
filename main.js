@@ -1,34 +1,31 @@
-document.addEventListener('DOMContentLoaded', () => {
-   const carousel = document.getElementById('carousel');
-   const ul = carousel ? carousel.querySelector('ul') : null;
-   const prevBtn = document.querySelector('.prev');
-   const nextBtn = document.querySelector('.next');
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.querySelector("#carousel");
+  const carouselItems = document.querySelectorAll("#carousel li");
+  const prevButton = document.querySelector(".prev");
+  const nextButton = document.querySelector(".next");
+  
+  let currentIndex = 0;
+  const totalItems = carouselItems.length;
 
-   let currentIndex = 0;
-   const slideWidth = carousel.offsetWidth;
+  // Function to update the carousel
+  function updateCarousel() {
+    const offset = -currentIndex * 100; // Move the carousel based on index
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
 
-   if (ul) {
-      // Initialize the carousel to show only the first image
-      ul.children.forEach((li, index) => {
-         if (index !== currentIndex) {
-            li.style.display = 'none';
-         }
-      });
+  // Next button click
+  nextButton.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % totalItems;
+    updateCarousel();
+  });
 
-      prevBtn.addEventListener('click', () => {
-         currentIndex = (currentIndex - 1 + ul.children.length) % ul.children.length;
-         updateCarousel();
-      });
+  // Previous button click
+  prevButton.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    updateCarousel();
+  });
 
-      nextBtn.addEventListener('click', () => {
-         currentIndex = (currentIndex + 1) % ul.children.length;
-         updateCarousel();
-      });
-
-      function updateCarousel() {
-         ul.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      }
-   } else {
-      console.error("The 'ul' element could not be found.");
-   }
+  // Initialize with the first image displayed
+  updateCarousel();
 });
+

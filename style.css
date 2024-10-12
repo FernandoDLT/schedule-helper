@@ -15,23 +15,6 @@ body {
    padding: 20px;
 }
 
-header {
-   /* background-color: #ff69b4; */
-   padding: 20px;
-   text-align: center;
-   color: rgb(0, 0, 0);
-   border-radius: 8px;
-   margin: 50px 20px;
-}
-
-header h1 {
-   font-size: 2.5rem;
-}
-
-header p {
-   font-size: 1.2rem;
-   margin-top: 10px;
-}
 
 /* Navigation Menu */
 nav {
@@ -54,209 +37,289 @@ nav ul {
 
 nav ul li {
    display: inline;
-   margin: 0 80px;
+   margin: 0 18px;
    text-transform: uppercase;
 }
 
 nav ul li a {
    color: #ff69b4;
    text-decoration: none;
-   font-size: 1.4rem;
+   /* font-size: 1.4rem; */
+   font-size: clamp(12px, 2.5vw, 18px);
+   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a:hover {
+   color: rgb(251, 84, 159);
    text-decoration: underline;
+   transform: scale(3.05);
 }
 
-/* #images {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: center;
-   margin: 10px auto 30px;
-}
-
-#images ul {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-around;
-   list-style: none;
-}
-
-
-#images li {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin: 8px;
+header {
+   /* background-color: #ff69b4; */
+   padding: 20px;
    text-align: center;
-   font-size: 1.2em;
+   color: rgb(0, 0, 0);
+   border-radius: 8px;
+   margin: 50px 20px;
 }
 
-#images img {
+header h1 {
+   /* font-size: 2.5rem; */
+   font-size: clamp(20px, 5vw, 40px);
+}
+
+header p {
+   font-size: 1.2rem;
    margin-top: 10px;
-   max-width: 500px;
-   max-height: 500px;
-   height: auto;
-   object-fit: contain;
 }
 
-  #carousel {
-     overflow: hidden;
-     position: relative;
-  }
+/* General Section Styling */
+#services {
+   text-align: center;
+   padding: 20px;
+}
 
-  #carousel ul {
-     display: flex;
-     transition: transform 0.5s ease;
-  } */
-
-  /* #carousel li {
-     flex: 0 0 auto;
-  } */
-
-  /* Buttons (optional) */
-  /* .prev,
-  .next {
-     position: absolute;
-     top: 50%;
-     transform: translateY(-50%);
-     cursor: pointer;
-  }
-
-  .prev {
-     left: 10px;
-  }
-
-  .next {
-     right: 10px;
-  } */
+/* Services Section */
+#services ul {
+   list-style: none;
+   font-size: 1.26rem;
+}
 
 #images {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 10px auto 30px;
+   width: 100%;
+   margin: 0 auto;
+   overflow: hidden;
+   position: relative;
 }
 
 #carousel {
    display: flex;
-   transition: transform 0.5s ease-in-out;
-   width: 300px;
-   overflow: hidden;
-   justify-content: center;
-}
-
-#carousel ul {
-   display: flex;
-   list-style: none;
    padding: 0;
    margin: 0;
+   list-style: none;
+   transition: transform .6s ease;
 }
 
 #carousel li {
+   min-width: 100%;
+   position: relative;
    display: flex;
    flex-direction: column;
-   justify-content: center;
    align-items: center;
-   min-width: 300px;
-   text-align: center;
 }
 
 #carousel li span {
-   font-weight: bold;
-   margin-bottom: 10px;
+   position: absolute;
+   top: 10px;
+   color: black;
+   background: #d7d7d7;
+   opacity: 0.3;
+   padding: 5px 16px;
+   border-radius: 5px;
 }
 
-#carousel img {
-   max-width: 300px;
+#carousel li img {
+   width: 60%;
+   max-width: 300%;
    height: auto;
    object-fit: contain;
-   margin-top: 10px;
 }
 
 #carousel-controls {
+   position: absolute;
+   top: 50%;
+   width: 100%;
    display: flex;
    justify-content: space-between;
-   width: 300px;
-   margin-top: 20px;
+   transform: translateY(-50%);
+   padding: 0 10px;
 }
 
-#carousel-controls .prev,
-#carousel-controls .next {
-   background-color: #333;
+#carousel-controls {
+   position: absolute;
+   top: 50%;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   transform: translateY(-50%);
+   padding: 0 10px;
+}
+
+#carousel-controls button {
+   display: none;
+   background-color: rgba(148, 146, 146, 0.7);
+   font-size: 2rem;
+   /* background-color: red; */
+   opacity: .2;
    color: #fff;
    border: none;
    padding: 10px;
    cursor: pointer;
-   font-size: 1rem;
-   border-radius: 5px;
+   transition: background-color 0.3s;
 }
 
-#carousel-controls .prev:hover,
-#carousel-controls .next:hover {
-   background-color: #555;
+/* Show the buttons when the user hovers over the images container */
+#images:hover #carousel-controls button {
+   display: block;
+   opacity: .3;
 }
+
+#carousel-controls button:hover {
+   background-color: rgba(121, 120, 120, 0.9);
+}
+
+/* Additional styles to align the buttons at the edges */
+#carousel-controls .prev {
+   position: absolute;
+   left: 20%;
+   transform: translateY(-50%);
+}
+
+#carousel-controls .next {
+   position: absolute;
+   right: 20%;
+   transform: translateY(-50%);
+}
+
+
 /* Sections */
 section {
-   background-color: white;
+   /* background-color: white; */
    padding: 20px;
    border-radius: 8px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    margin-bottom: 20px;
 }
 
-section h2 {
-   margin-bottom: 10px;
+#home h2 {
+   color: #ff4f9f;
    text-align: center;
-   font-size: 1.8rem;
+}
+
+#home p {
+   text-align: center;
+   /* justify-content: center; */
+   margin: 0 auto;
+   width: 80%;
+}
+
+
+#booking {
+   display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+   /* max-width: 100%; */
+   margin: 0 auto;
+   padding: 20px;
+   background-color: #f4f4f4;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   border-radius: 10px;
+   /* justify-content: center; */
+}
+
+#booking h2 {
+   text-align: center;
+   margin-bottom: 30px;
    color: #ff69b4;
+   /* display: block; */
+   /* margin: 0 auto; */
+   /* justify-content: center; */
+   /* font-size: 1.8rem; */
 }
-
-/* Services Section */
-#services ul {
-   list-style: none;
-}
-
-/* #services ul li {
-   text-align: center;
-   margin-bottom: 10px;
-   font-size: 1.2rem;
-} */
 
 /* Booking Form */
-form {
-   display: grid;
-   gap: 15px;
+#booking form {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   width: 40%;
+   margin-right: 5%;
 }
 
-form label {
+.business-hours {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   /* width: 65%; */
+}
+
+.business-hours h1 {
+   margin-bottom: 10px;
+}
+
+.business-hours p,
+.business-hours ul,
+.cintanct-info {
+   margin-bottom: 10px;
+}
+
+#booking form label {
+   margin-top: 10px;
    font-size: 1.1rem;
+   font-weight: 600;
    color: #555;
 }
 
-form input,
-form select {
-   padding: 10px;
-   font-size: 1rem;
-   border: 1px solid #ddd;
-   border-radius: 5px;
+#booking form input,
+#booking form select {
    width: 100%;
+   padding: 8px;
+   margin-top: 5px;
 }
 
-form button {
-   padding: 10px;
-   background-color: #ff69b4;
-   border: none;
+#booking button {
+   margin: 10px 0;
+   /* margin-left: 200px; */
+   padding: 10px 20px;
    color: white;
-   font-size: 1.1rem;
+   background-color: #ff69b4;
+   font-size: 1rem;
+   border: none;
    border-radius: 5px;
    cursor: pointer;
+}
+
+#booking button:hover {
+   background-color: lightpink;
+}
+
+#booking .form-and-info {
+   display: flex;
+   /* justify-content: space-between; */
+   justify-content: center;
+   width: 80%;
+   margin: 0 auto;
 }
 
 form button:hover {
    background-color: #ff4f9f;
 }
+
+/* form input,
+form select {
+   padding: 10px;
+   font-size: 1rem;
+   border: 1px solid #cfcccc;
+   border-radius: 5px;
+   width: 100%;
+}
+
+
+
+section p {
+   text-align: center;
+   width: 80%;
+   margin: 10px auto;
+}
+
+
+h2 {
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+} */
+   
 
 /* Footer */
 footer {
@@ -264,4 +327,82 @@ footer {
    margin-top: 20px;
    font-size: 1rem;
    color: #888;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 910px) {
+   #booking {
+      flex-direction: column;
+   }
+
+   #booking form,
+   .business-hours {
+      width: 100%;
+      margin-right: 0;
+   }
+
+   nav {
+      margin: 0px 20px 1px;
+   }
+
+   nav ul li a {
+      font-size: 2vw;
+      /* Responsive font size for nav links */
+   }
+
+   header h1 {
+      font-size: 5vw;
+      /* Responsive font size for header */
+   }
+
+   nav ul li {
+      /* display: inline; */
+      margin: 0 8px;
+      /* text-transform: uppercase; */
+   }
+
+   /* nav ul li a {
+      font-size: 1rem;
+
+   }
+
+   header h1 {
+      font-size: 1.5rem;
+   } */
+}
+/* 
+nav ul li a {
+   font-size: 4rem;
+} */
+
+@media (max-width: 504px) {
+   header {
+      margin-top: 5px;
+   }
+   nav ul {
+      display: flex;
+      /* Use flexbox for the container */
+      flex-direction: column;
+      /* Stack items vertically */
+      align-items: center;
+      /* Center items horizontally */
+      padding: 0;
+      /* Remove padding */
+      margin: 0;
+      /* Remove margin */
+   }
+
+   nav ul li {
+      width: 100%;
+      /* Make each link take the full width */
+      text-align: center;
+      /* Center text in each link */
+   }
+
+   nav ul li a {
+      display: block;
+      /* Make the link a block element */
+      padding: 10px;
+      /* Add some padding for better click area */
+   }
 }
