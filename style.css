@@ -47,7 +47,7 @@ header {
 }
 
 .nav-container li {
-   margin: 0 10px;
+   margin: 0 28px;
 }
 
 .sd-logo img {
@@ -68,7 +68,7 @@ header {
 .nav-container .right-nav {
    display: flex;
    flex: 1;
-   padding: 0 20px;
+   padding: 0px;
    /* Add some padding instead of margin */
 }
 
@@ -81,8 +81,11 @@ header {
 }
 
 nav ul li a {
-   font-size: clamp(8px, 2.5vw, 18px);
-   color: #ff69b4;
+   font-size: clamp(8px, 2.5vw, 14px);
+   /* color: #ff69b4; */
+   font-weight: 600;
+   text-transform: uppercase;
+   color: #333;
    text-decoration: none;
    transition: color 0.3s ease, transform 0.3s ease;
 }
