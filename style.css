@@ -60,7 +60,7 @@ header {
    justify-content: center;
    flex-shrink: 0;
    position: relative;
-   margin: 0 100px;
+   margin: 0 160px;
    width: 40px;
 }
 
@@ -121,7 +121,7 @@ p {
 }
 
 #images {
-   width: 100%;
+   /* width: 100%; */
    margin: 0 auto;
    overflow: hidden;
    position: relative;
@@ -218,26 +218,38 @@ p {
 
 
 /* Sections */
-section {
-   /* background-color: white; */
-   padding: 20px;
-   border-radius: 8px;
-   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   margin-bottom: 20px;
+
+.welcome {
+   padding: 40px 0 20px; 
+}
+
+h1 {
+   font-size: 1.4rem;
+   margin-bottom: 6px;
 }
 
 #home h2 {
+   margin-bottom: 6px;
    color: #ff4f9f;
    text-align: center;
 }
 
 #home p {
+   padding: 0 0 40px 0;
    text-align: center;
    /* justify-content: center; */
    margin: 0 auto;
    width: 80%;
 }
 
+
+section {
+   /* background-color: white; */
+   padding: 0 0 0 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   margin-bottom: 50px;
+}
 
 #booking {
    display: flex;
@@ -320,17 +332,76 @@ section {
 
 #booking .form-and-info {
    display: flex;
-   /* justify-content: space-between; */
+   justify-content: space-between;
    justify-content: center;
-   width: 80%;
-   margin: 0 auto;
+   /* width: 82%; */
+   /* margin: 0 auto; */
 }
 
 form button:hover {
    background-color: #ff4f9f;
 }
 
-/* form input,
+#booking h3 {
+   font-family: 'Playfair Display', serif;
+   color: rgb(68, 67, 67);
+   margin-bottom: 16px;
+}
+
+
+
+ul#contact-info {
+   list-style: none;
+   padding: 0;
+   margin: 0px;
+}
+
+.contact-details {
+   margin-bottom: 30px;
+}
+
+ul.contact-details li {
+   display: flex;
+   justify-content: flex-start;
+   margin-bottom: 4px;
+   font-size: .8rem;
+}
+
+ul.contact-details li i {
+   width: 100px;
+   /* Set a fixed width for the labels */
+   display: inline-block;
+}
+
+ul.contact-details li.city {
+   /* padding-left: 100px; */
+   /* Align the city with the other text elements */
+}
+
+ul#contact-details {
+   margin-bottom: 20px;
+}
+
+.business-hrs ul li {
+   list-style-type: none;
+   display: flex;
+   justify-content: flex-start;
+   margin-bottom: 4px;
+   font-size: .8rem;
+}
+
+li.day b{
+   width: 100px;
+}
+
+
+/* .business-hrs  {
+   list-style: none;
+   font-size: .8rem;
+} */
+
+
+form input,
 form select {
    padding: 10px;
    font-size: 1rem;
@@ -347,13 +418,6 @@ section p {
    margin: 10px auto;
 }
 
-
-h2 {
-   text-align: center;
-   align-items: center;
-   justify-content: center;
-} */
-   
 
 /* Footer */
 footer {
@@ -395,7 +459,7 @@ footer {
 } */
 
 /* Responsive Design */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
    .nav-container {
       flex-direction: column;
       justify-content: center;
@@ -412,6 +476,5 @@ footer {
    .nav-container .right-nav {
       justify-content: center;
       padding: 0;
-      /* Remove padding for smaller screens */
    }
-}
+} */
