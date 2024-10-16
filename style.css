@@ -24,6 +24,42 @@ header {
    background-color: #f5f5f5;
 }
 
+/* Burger menu icon */
+/* .burger-menu {
+   display: none;
+   cursor: pointer;
+   flex-direction: column;
+   justify-content: space-between;
+   width: 30px;
+   height: 20px;
+   z-index: 1000;
+} */
+
+.burger-menu {
+   position: absolute;
+   top: 20px;
+   /* Adjust as needed */
+   right: 20px;
+   /* Move to the right */
+   display: none;
+   /* Initially hidden, for smaller screens it will show */
+   cursor: pointer;
+   z-index: 1000;
+   /* Ensure it stays on top */
+   flex-direction: column;
+   justify-content: space-between;
+   width: 30px;
+   height: 20px;
+}
+
+.burger-menu span {
+   height: 4px;
+   background-color: #333;
+   /* margin: 3px 0; */
+   border-radius: 2px;
+   right: 0;
+}
+
 .nav-container {
    display: flex;
    align-items: center;
@@ -32,6 +68,7 @@ header {
    position: relative;
    justify-content: space-between;
    /* Ensure space between nav and logo */
+   flex-wrap: wrap;
 }
 
 .nav-container nav {
@@ -50,8 +87,9 @@ header {
    margin: 0 28px;
 }
 
+/* LOGO */
 .sd-logo img {
-   height: 200px;
+   height: 150px;
    margin: 0;
 }
 
@@ -124,7 +162,7 @@ p {
 }
 
 #images {
-   /* width: 100%; */
+   width: 90%;
    margin: 0 auto;
    overflow: hidden;
    position: relative;
@@ -140,6 +178,7 @@ p {
 
 #carousel li {
    min-width: 100%;
+   height: auto;
    position: relative;
    display: flex;
    flex-direction: column;
@@ -227,8 +266,10 @@ p {
 }
 
 h1 {
-   font-size: 1.4rem;
    margin-bottom: 6px;
+   font-size: 1.25rem;
+   text-transform: uppercase;
+   letter-spacing: .12rem;
 }
 
 #home h2 {
@@ -248,7 +289,7 @@ h1 {
 
 section {
    /* background-color: white; */
-   padding: 0 0 0 20px;
+   padding: 0;
    border-radius: 8px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    margin-bottom: 50px;
@@ -346,9 +387,10 @@ form button:hover {
 }
 
 #booking h3 {
-   font-family: 'Playfair Display', serif;
-   color: rgb(68, 67, 67);
    margin-bottom: 16px;
+   font-family: 'Playfair Display', serif;
+   text-transform: uppercase;
+   color: rgb(68, 67, 67);
 }
 
 
@@ -423,61 +465,187 @@ section p {
 
 
 /* Footer */
-footer {
+footer p {
    text-align: center;
    margin-top: 20px;
    font-size: 1rem;
+   font-size: clamp(12px, 3vw, 18px);
    color: #888;
 }
 
 /* Mobile responsiveness */
-/* @media (max-width: 910px) {
-   #booking {
-      flex-direction: column;
-   }
-
-   #booking form,
-   .business-hours {
-      width: 100%;
-      margin-right: 0;
-   }
-
-   nav {
-      margin: 0px 20px 1px;
-   }
-
-   nav ul li a {
-      font-size: 2vw;
-   }
-
-   header h1 {
-      font-size: 5vw;
-   }
-
-   nav ul li {
-      margin: 0 8px;
-   }
-
-
-} */
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
+@media (max-width: 1180px) {
    .nav-container {
-      flex-direction: column;
-      justify-content: center;
+      padding: 10px;
    }
 
+   .nav-container nav li {
+      /* flex: 1; */
+      margin: 14px;
+   }
+   
    .nav-container .sd-logo {
-      position: relative;
-      left: auto;
-      transform: none;
-      margin-bottom: 20px;
+      margin: 0 10px;
    }
 
+   .sd-logo img {
+      height: 125px;
+   }
+   
    .nav-container .left-nav,
    .nav-container .right-nav {
+      margin: 0 10px;
       justify-content: center;
+   }
+   
+   nav ul li a {
+      font-size: .82rem;
+   }
+
+   footer p {
+      /* text-align: center; */
+      /* margin-top: 20px; */
+      font-size: .88rem;
+      /* color: #888; */
+   }
+}
+
+/* @media (max-width: 770px) {
+   .nav-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+   }
+
+   .burger-menu {
+      display: flex;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 25px;
+      width: 30px;
+   }
+
+   .burger-menu span {
+      background-color: #000;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+   }
+
+   .sd-logo {
+      display: none;
+      margin: 10px 0;
+      text-align: center;
+   }
+
+   .nav-container.nav-open {
+      display: flex;
+   }
+
+   .nav-container nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: #f00d0d;
+   }
+
+   .nav-container ul {
+      list-style-type: none;
       padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .nav-container li {
+      margin: 10px 0;
+      width: 100%;
+      text-align: center;
+   }
+
+   .nav-container nav.active {
+      display: flex;
    }
 } */
+
+
+@media (max-width: 770px) {
+   .nav-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+   }
+
+   .burger-menu {
+      display: flex;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 25px;
+      width: 30px;
+   }
+
+   .burger-menu span {
+      background-color: #000;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+   }
+
+   /* Logo styling */
+   .sd-logo {
+      position: relative;
+      margin-bottom: 20px;
+      /* Move logo above */
+      z-index: 1;
+      /* Ensure it doesn't interfere with navigation */
+   }
+
+   /* Show the nav when the burger menu is clicked */
+   .nav-container.nav-open {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .nav-container nav {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: white;
+      z-index: 0;
+   }
+
+   .nav-container ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .nav-container li {
+      margin: 10px 0;
+      width: 100%;
+      text-align: center;
+   }
+
+   .nav-container nav.active {
+      display: flex;
+   }
+}
