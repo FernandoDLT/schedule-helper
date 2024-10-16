@@ -25,15 +25,15 @@ header {
 }
 
 /* Burger menu icon */
-/* .burger-menu {
-   display: none;
+.burger-menu {
+   /* display: none;
    cursor: pointer;
    flex-direction: column;
    justify-content: space-between;
    width: 30px;
    height: 20px;
-   z-index: 1000;
-} */
+   z-index: 1000; */
+}
 
 .burger-menu {
    position: absolute;
@@ -312,10 +312,6 @@ section {
    text-align: center;
    margin-bottom: 30px;
    color: #ff69b4;
-   /* display: block; */
-   /* margin: 0 auto; */
-   /* justify-content: center; */
-   /* font-size: 1.8rem; */
 }
 
 /* Booking Form */
@@ -331,7 +327,6 @@ section {
    display: flex;
    flex-direction: column;
    justify-content: flex-start;
-   /* width: 65%; */
 }
 
 .business-hours h1 {
@@ -360,7 +355,6 @@ section {
 
 #booking button {
    margin: 10px 0;
-   /* margin-left: 200px; */
    padding: 10px 20px;
    color: white;
    background-color: #ff69b4;
@@ -503,10 +497,7 @@ footer p {
    }
 
    footer p {
-      /* text-align: center; */
-      /* margin-top: 20px; */
       font-size: .88rem;
-      /* color: #888; */
    }
 }
 
@@ -578,19 +569,32 @@ footer p {
 
 
 @media (max-width: 770px) {
+   body {
+      padding-top: 0;
+      margin-top: 0;
+   }
+   
+   header {
+      margin-top: 0;
+      padding-top: 0;
+   }
+
    .nav-container {
       display: none;
       flex-direction: column;
       align-items: center;
       width: 100%;
+      max-height: 50vw;
+      overflow: auto;
+      height: 200px;
    }
-
+   
    .burger-menu {
       display: flex;
       position: fixed;
-      top: 20px;
+      top: 10px;
       right: 20px;
-      z-index: 1000;
+      z-index: 1100;
       cursor: pointer;
       flex-direction: column;
       justify-content: space-between;
@@ -605,31 +609,28 @@ footer p {
       border-radius: 2px;
    }
 
-   /* Logo styling */
-   .sd-logo {
-      position: relative;
-      margin-bottom: 20px;
-      /* Move logo above */
-      z-index: 1;
-      /* Ensure it doesn't interfere with navigation */
-   }
-
-   /* Show the nav when the burger menu is clicked */
    .nav-container.nav-open {
       display: flex;
       flex-direction: column;
       align-items: center;
+      top: 0px;
+      width: 100%;
+      padding-top: 0;
+      z-index: 1000;
    }
-
+   
    .nav-container nav {
+      position: fixed;
       display: flex;
       flex-direction: column;
       width: 100%;
       background-color: white;
-      z-index: 0;
+      z-index: 1000;
+      transition: background-color 0.3s;
    }
 
    .nav-container ul {
+      top: 0;
       list-style-type: none;
       padding: 0;
       margin: 0;
@@ -640,7 +641,7 @@ footer p {
    }
 
    .nav-container li {
-      margin: 10px 0;
+      margin: 0;
       width: 100%;
       text-align: center;
    }
@@ -648,4 +649,104 @@ footer p {
    .nav-container nav.active {
       display: flex;
    }
+
+   #services {
+      transition: margin-top .9s ease;
+   }
+
+             /* Stack the contact details, business hours, and booking section vertically */
+      
+             .form-and-info {
+                display: flex;
+                flex-direction: column;
+                /* Stack the form and contact info vertically */
+                align-items: center;
+             }
+      
+             .contact-details {
+                padding: 0;
+                margin-bottom: 20px;
+                /* Add spacing between stacked sections */
+                text-align: center;
+                /* Center the text for smaller screens */
+             }
+      
+             .business-hrs {
+                margin-bottom: 20px;
+                /* Add some spacing before the booking section */
+                text-align: center;
+                /* Center the business hours for smaller screens */
+             }
+      
+             #booking {
+                margin-top: 20px;
+                /* Space above the booking section */
+                width: 100%;
+                /* Ensure the section takes up full width */
+                text-align: center;
+                /* Center align the booking section */
+             }
+      
+             /* Style the booking form to adapt to smaller screens */
+             #booking form {
+                width: 90%;
+                /* Make the form responsive */
+                max-width: 400px;
+                /* Set a max width for larger mobile screens */
+                margin: 0 auto;
+                /* Center the form */
+               margin-bottom: 40px;
+             }
+      
+             #booking h2 {
+                font-size: 1.5em;
+                /* Adjust heading size for smaller screens */
+             }
+      
+             #booking label {
+                display: block;
+                margin-bottom: 10px;
+                /* Space between label and input */
+             }
+      
+             #booking input,
+             #booking select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 15px;
+                /* Space between form elements */
+             }
+      
+             #booking button {
+                width: 100%;
+                padding: 10px;
+                background-color: #ff69b4;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+
+             }
+      
+             #booking button:hover {
+                background-color: rgb(246, 12, 223);
+             }
+      
+             /* Adjust spacing between elements within the contact section */
+             .contact-details li,
+             .business-hrs ul li {
+                margin-bottom: 10px;
+             }
+      
+             /* Ensure everything is aligned to the center */
+             .contact-details ul,
+             .business-hrs ul {
+                list-style: none;
+                padding: 0;
+             }
+      
+             /* Optional: Hide address on small screens if needed */
+             .contact-details li i b {
+                display: block;
+                /* Ensure address labels appear on their own line */
+             }
 }

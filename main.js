@@ -3,22 +3,7 @@ const carousel = document.querySelector("#carousel");
 const carouselItems = document.querySelectorAll("#carousel li");
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
-  
-const burgerMenu = document.querySelector('.burger-menu');
-const navContainer = document.querySelector('.nav-container');
-
-burgerMenu.addEventListener('click', () => {
-   navContainer.classList.toggle('nav-open');
-});
-
-
-// const burgerMenu = document.querySelector('.burger-menu');
-// const nav = document.querySelector('.nav-container nav');
-
-// burgerMenu.addEventListener('click', () => {
-//    nav.classList.toggle('active');  // Toggles the "active" class to show/hide the menu
-// });
-  
+    
   let currentIndex = 0;
   const totalItems = carouselItems.length;
 
@@ -42,5 +27,19 @@ burgerMenu.addEventListener('click', () => {
 
   // Initialize with the first image displayed
   updateCarousel();
+});
+
+const burgerMenu = document.querySelector('.burger-menu');
+const navContainer = document.querySelector('.nav-container');
+const servicesSection = document.querySelector('#services');
+
+burgerMenu.addEventListener('click', function() {
+  navContainer.classList.toggle('nav-open');
+
+  if (navContainer.classList.contains('nav-open')) {
+    servicesSection.style.marginTop = '100px'
+  } else {
+    servicesSection.style.marginTop ='0'
+  }
 });
 
