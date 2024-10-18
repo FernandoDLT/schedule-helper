@@ -783,47 +783,7 @@ footer p {
       width: 80%;
    }
    
-
-            /* .nav-container {
-               display: flex;
-               flex-direction: column;
-               align-items: center;
-            }
-      
-            .left-nav,
-            .right-nav {
-               text-align: center;
-            }
-      
-            .sd-logo {
-               display: none;
-            } */
-
-   /* .nav-container {
-      .nav-container nav li {
-         margin: 4px 0;
-      }
-      justify-content: center;
-      overflow: visible;
-   }
-
-
-   .sd-logo img {
-      display: none;
-   }
-   
-   .left-nav,
-   .right-nav {
-      flex-basis: 100%;
-      text-align: center;
-      margin-bottom: 10px;
-   }
-   
-   nav ul li {
-      padding: 2px 0;
-   }
-   
-   } */
+   } 
    nav ul li a {
       font-size: .68em;
    }
