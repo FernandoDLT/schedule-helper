@@ -167,13 +167,13 @@ p {
 }
 
 /* General Section Styling */
-#services {
+#services-carousel {
    text-align: center;
    /* padding: 20px; */
 }
 
 /* Services Section */
-#services ul {
+#services-carousel ul {
    list-style: none;
    font-size: 1.26rem;
 }
@@ -202,14 +202,30 @@ p {
    align-items: center;
 }
 
-#carousel li span {
+/* #carousel li span {
    position: absolute;
    top: 10px;
    color: black;
-   /* background: #d7d7d7; */
+   background: #d7d7d7;
    opacity: 0.3;
    padding: 5px 16px;
    border-radius: 5px;
+} */
+
+
+#carousel li span {
+   position: absolute;
+   top: 10px;
+   color: white;
+   /* Keep text white for contrast */
+   background: rgba(0, 0, 0, 0.4);
+   /* Lighter background with 40% opacity */
+   padding: 8px 20px;
+   border-radius: 8px;
+   font-size: 16px;
+   font-weight: bold;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 #carousel li img {
@@ -282,6 +298,9 @@ p {
    padding: 10px 0 40px; 
 }
 
+.about {
+   margin-bottom: 40px;
+}
 
 #main .about h2 {
    margin-bottom: 10px;
@@ -299,13 +318,59 @@ p {
    /* justify-content: center; */
 }
 
-
-#services {
+#services-carousel {
    /* background-color: white; */
    padding: 0;
    border-radius: 8px;
    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
    /* margin-bottom: 28px; */
+}
+
+.my-services {
+   text-align: center;
+   width: 80%;
+   margin: 0 auto;
+   /* margin-bottom: 20px; */
+}
+
+.my-services h2 {
+   color: #ff4f9f;
+   font-size: 1.24em;
+   font-weight: bold;
+}
+
+.my-services p {
+   width: 80%;
+   /* align-items: center; */
+   margin: 0 auto 24px;
+}
+
+.row {
+   display: -ms-flexbox;
+   /* IE10 */
+   display: flex;
+   -ms-flex-wrap: wrap;
+   /* IE10 */
+   flex-wrap: wrap;
+   padding: 0 4px;
+   width: 70%;
+   margin: 0 auto;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+   -ms-flex: 33%;
+   /* IE10 */
+   flex: 33%;
+   max-width: 33%;
+   padding: 0 4px;
+}
+
+.column img {
+   margin-top: 8px;
+   margin-bottom: 40px;
+   vertical-align: middle;
+   width: 100%;
 }
 
 hr {
@@ -489,6 +554,15 @@ footer p {
    color: #ffb5d9;
 }
 
+
+@media screen and (max-width: 600px) {
+   .column {
+      -ms-flex: 100%;
+      flex: 100%;
+      max-width: 100%;
+   }
+}
+
 /* Mobile responsiveness */
 @media (max-width: 1180px) {
    .nav-container {
@@ -631,12 +705,35 @@ footer p {
       /* Prevent content from leaking through */
    }
 
-   #carousel-controls button {
-      font-size: 1em;
-      padding: 5px;
+   #carousel-controls  {
+      display: none;
+      /* font-size: 1em;
+      padding: 5px; */
    }
 
-   #services {
+      #carousel li span {
+         position: absolute;
+         top: 10px;
+         color: white;
+         /* Keep text white for contrast */
+         background: rgba(0, 0, 0, 0.4);
+         /* Lighter background with 40% opacity */
+         padding: 6px 12px;
+         font-size: .68em;
+         /* border-radius: 8px;
+         font-weight: bold;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); */
+      }
+
+   #carousel li img {
+      width: 80%;
+      /* max-width: 300%;
+      height: auto;
+      object-fit: contain; */
+   }
+
+   #services-carousel {
       transition: margin-top .9s ease;
    }
 
@@ -649,7 +746,19 @@ footer p {
    }
 
    #main .about h2 {
-      font-size: 1em;
+      font-size: 1.2em;
+   }
+   
+   .my-services h2 {
+      margin: 20px 0 10px;
+      /* width: 80%; */
+      font-size: 1.2em;
+   }
+
+   .my-services p {
+      width: 100%;
+      /* margin: 0 auto; */
+      font-size: .92em;
    }
 
    /* Stack the contact details, business hours, and booking section vertically */
@@ -754,26 +863,38 @@ footer p {
    }
 }
 
-/* @media (max-width: 480px) {
-   #contact-info-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-   }
-
-   ul.contact-details, .business-hrs {
-      width: 80%;
-      margin: 4px auto 20px;
-   }
-
-      ul.contact-details li b {
-         width: 90px;
-      }
-} */
-
 @media (max-width: 480px) {
+   #carousel li img {
+      width: 80%;
+      /* max-width: 300%;
+      height: auto;
+      object-fit: contain; */
+   }
+
+   #carousel-controls {
+      display: none;
+   }
+
+   /* #carousel-controls:hover {
+      display: inline;
+      color: red;
+   } */
+
+   #carousel li span {
+      position: absolute;
+      top: 10px;
+      color: white;
+      /* Keep text white for contrast */
+      background: rgba(0, 0, 0, 0.4);
+      /* Lighter background with 40% opacity */
+      padding: 6px 12px;
+      font-size: .56em;
+      /* border-radius: 8px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); */
+   }
+
    h1.title {
       font-size: .89em;
    }
@@ -783,7 +904,6 @@ footer p {
       width: 80%;
    }
    
-   } 
    nav ul li a {
       font-size: .68em;
    }
