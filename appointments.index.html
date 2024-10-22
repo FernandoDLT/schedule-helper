@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+   <title>Appointment Tracker - SD Nails</title>
+</head>
+
+<body>
+   <h1>Chirri's Appointment Tracker</h1>
+
+   <div id="calendar"></div>
+
+   <div id="appointment-details">
+      <h2>Appointment for <span id="selected-date"></span></h2>
+      <!-- Ensure this is not commented out -->
+      <ul id="appointment-list"></ul> 
+
+      <button type="button" id="modify-button" style="display:none;">Modify Appointment</button>
+      <button type="button" id="delete-button" style="display:none;">Delete Appointment</button>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+   <script src="appointments.js"></script>
+</body>
+
+</html>
