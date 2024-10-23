@@ -567,19 +567,57 @@ footer p {
    /* background: yellow; */
 }
 
+h1 {
+   color: black;
+   text-align: center;
+}
+
 #calendar {
    max-width: 900px;
    margin: 40px auto;
 }
 
-#appointment-details {
-   margin-top: 20px;
+#appointment-details h2 {
+   margin: 40px auto 20px;
+   text-align: center;
 }
 
-#appointment-details button > #modify-button {
-   font-size: 12px;
+
+#appointment-form {
+   align-items: center;
+   width: 40%;
+   margin: 0 auto;
+}
+
+#button-container {
+   margin-top: 20px;
+   text-align: center;
+}
+
+#modify-button,
+#delete-button {
+   display: block;
+   /* Set the buttons as block-level elements */
+   width: 200px;
+   /* Set a width for the buttons */
+   padding: 10px;
+   margin: 10px auto;
+   /* This will center the button horizontally */
+   font-size: 16px;
    color: red;
-   background: black;
+   background: white;
+   /* background: black; */
+   border-radius: 5px;
+   border: 1px solid red;
+   text-align: center;
+   /* Make sure the text inside the button is centered */
+   /* border: none; */
+   cursor: pointer;
+}
+
+#appointment-details {
+   /* text-align: center; */
+   /* color: black; */
 }
 
 /* Mobile responsiveness */
@@ -892,6 +930,11 @@ footer p {
       width: 68px;
       /* Ensure address labels appear on their own line */
    }
+
+
+   #appointment-form {
+      width: 60%;
+   }
 }
 
 @media screen and (max-width: 600px) {
@@ -974,5 +1017,9 @@ footer p {
       font-size: .7em;
       margin: 20px auto 0;
       /* text-align: center; */
+   }
+
+   #appointment-form {
+      width: 80%;
    }
 }

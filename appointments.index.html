@@ -18,6 +18,24 @@
       <h2>Appointment for <span id="selected-date"></span></h2>
       <ul id="appointment-list"></ul> 
 
+      <form id="appointment-form">
+         <label for="name">Name:</label>
+         <input type="text" id="name" required>
+      
+         <label for="service">Service:</label>
+         <input type="text" id="service" required>
+      
+         <label for="date">Date:</label>
+         <input type="date" id="date" required>
+      
+         <label for="time">Time:</label>
+         <input type="time" id="time" required>
+      
+         <!-- <button type="submit">Book Appointment</button> -->
+      </form>
+   </div>
+   
+   <div id="button-container">
       <button type="button" id="modify-button" style="display:none;">Modify Appointment</button>
       <button type="button" id="delete-button" style="display:none;">Delete Appointment</button>
    </div>
