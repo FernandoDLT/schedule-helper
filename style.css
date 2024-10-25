@@ -589,6 +589,18 @@ h1 {
    margin: 0 auto;
 }
 
+#appointment-form label {
+   display: block;
+   margin-bottom: 10px;
+   font-weight: 700;
+   /* color: red; */
+}
+
+#appointment-form input {
+   margin-bottom: 20px;
+   border: 2px solid rgb(190, 190, 190);
+}
+
 #button-container {
    margin-top: 20px;
    text-align: center;
@@ -615,9 +627,25 @@ h1 {
    cursor: pointer;
 }
 
+#modify-button {
+   color: green;
+   border: 1px solid green;
+   background-color: white;
+}
+
+#modify-button:hover {
+   background-color: green;
+   color: white;
+}
+
+#delete-button:hover {
+   color: white;
+   background-color: red;
+}
+
 #appointment-details {
    /* text-align: center; */
-   /* color: black; */
+   color: rgb(52, 55, 58);
 }
 
 /* Mobile responsiveness */
