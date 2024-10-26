@@ -157,39 +157,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const form = document.querySelector('form');
-//     if (form) {
-//         form.addEventListener('submit', function(event) {
-//             event.preventDefault(); // Prevent the default form submission
-
-//             // Capture form values
-//             const name = document.getElementById('name').value;
-//             const service = document.getElementById('service').value;
-//             const date = document.getElementById('date').value;
-//             const time = document.getElementById('time').value;
-//             const phone = document.getElementById('phone').value;
-
-//             // Create an appointment object
-//             const appointment = { name, service, date, time, phone };
-
-//             // Store appointment in localStorage
-//             let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-//             appointments.push(appointment);
-//             localStorage.setItem('appointments', JSON.stringify(appointments));
-
-//             // Clear the form fields
-//             document.getElementById('name').value = '';
-//             document.getElementById('service').value = '';
-//             document.getElementById('date').value = '';
-//             document.getElementById('time').value = '';
-//             document.getElementById('phone').value = '';
-
-//             // Optional: Display a success message
-//             alert('Appointment successfully booked!');
-//         });
-//     }
-// });
-
-
