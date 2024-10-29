@@ -117,7 +117,6 @@ burgerMenu.addEventListener('click', function() {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     if (form) {
@@ -128,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const name = document.getElementById('name').value;
             const service = document.getElementById('service').value;
             const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
+            const time = document.getElementById('time').value; // Updated to select element
             const phone = document.getElementById('phone').value;
 
             // Ensure all form fields are filled, including phone
@@ -149,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('name').value = '';
             document.getElementById('service').value = '';
             document.getElementById('date').value = '';
-            document.getElementById('time').value = '';
+            document.getElementById('time').value = ''; // Updated to clear select element
             document.getElementById('phone').value = '';
 
             // Optional: Display a success message
@@ -157,3 +156,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     const form = document.querySelector('form');
+//     if (form) {
+//         form.addEventListener('submit', function(event) {
+//             event.preventDefault(); // Prevent the default form submission
+
+//             // Capture form values
+//             const name = document.getElementById('name').value;
+//             const service = document.getElementById('service').value;
+//             const date = document.getElementById('date').value;
+//             const time = document.getElementById('time').value;
+//             const phone = document.getElementById('phone').value;
+
+//             // Ensure all form fields are filled, including phone
+//             if (!name || !service || !date || !time || !phone) {
+//                 alert('Please fill in all fields, including the phone number.');
+//                 return; // Stop further execution if any field is empty
+//             }
+
+//             // Create an appointment object
+//             const appointment = { name, service, date, time, phone };
+
+//             // Store appointment in localStorage
+//             let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+//             appointments.push(appointment);
+//             localStorage.setItem('appointments', JSON.stringify(appointments));
+
+//             // Clear the form fields
+//             document.getElementById('name').value = '';
+//             document.getElementById('service').value = '';
+//             document.getElementById('date').value = '';
+//             document.getElementById('time').value = '';
+//             document.getElementById('phone').value = '';
+
+//             // Optional: Display a success message
+//             alert('Appointment successfully booked!');
+//         });
+//     }
+// });

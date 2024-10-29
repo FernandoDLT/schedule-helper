@@ -152,7 +152,7 @@
       </div>
    </div>
 
-   
+
    <hr>
    
    <!-- Booking Section -->
@@ -174,8 +174,22 @@
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" required>
             
+            <!-- <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required> -->
             <label for="time">Select Time:</label>
-            <input type="time" id="time" name="time" required>
+            <select id="time" name="time" required>
+               <option value="" disabled selected>Select Time</option>
+               <option value="10:00">10:00 AM</option>
+               <option value="11:00">11:00 AM</option>
+               <option value="12:00">12:00 PM</option>
+               <option value="1:00">1:00 PM</option>
+               <option value="2:00">2:00 PM</option>
+               <option value="3:00">3:00 PM</option>
+               <option value="4:00">4:00 PM</option>
+               <option value="5:00">5:00 PM</option>
+               <option value="6:00">6:00 PM</option>
+            </select>
+
 
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" required-pattern="[0-9]{10}" placeholder="123456789">
