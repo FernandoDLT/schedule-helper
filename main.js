@@ -110,7 +110,7 @@ burgerMenu.addEventListener('click', function() {
   navContainer.classList.toggle('nav-open');
 
   if (navContainer.classList.contains('nav-open')) {
-    servicesSection.style.marginTop = '100px'
+    servicesSection.style.marginTop = '260px'
   } else {
     servicesSection.style.marginTop ='0'
   }

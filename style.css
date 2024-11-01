@@ -20,8 +20,16 @@ header {
    display: flex;
    justify-content: center;
    align-items: center;
-   padding-bottom: 20px;
-   /* background-color: #f5f5f5; */
+   width: 100%;
+   padding-bottom: 2px;
+   background-color: #f5f5f5;
+   /* border-bottom: 0.025em solid #33353f; */
+   box-shadow: 0em .0em .995em rgb(237, 145, 146);
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 999;
+   transition: top 1s ease, opacity .3s;
 }
 
 .burger-menu {
@@ -56,7 +64,6 @@ header {
    max-width: 1200px;
    position: relative;
    justify-content: space-between;
-   /* Ensure space between nav and logo */
    flex-wrap: wrap;
 }
 
@@ -199,6 +206,7 @@ p {
    position: relative;
    display: flex;
    flex-direction: column;
+   margin-top: 180px;
    align-items: center;
 }
 
@@ -236,21 +244,11 @@ p {
 }
 
 #carousel-controls {
-   position: absolute;
-   top: 50%;
-   width: 100%;
    display: flex;
    justify-content: space-between;
-   transform: translateY(-50%);
-   padding: 0 10px;
-}
-
-#carousel-controls {
    position: absolute;
-   top: 50%;
+   top: 60%;
    width: 100%;
-   display: flex;
-   justify-content: space-between;
    transform: translateY(-50%);
    padding: 0 10px;
 }
@@ -337,20 +335,20 @@ p {
    /* margin-bottom: 28px; */
 }
 
-.my-services {
+#my-services {
    text-align: center;
    width: 80%;
    margin: 0 auto;
    /* margin-bottom: 20px; */
 }
 
-.my-services h2 {
+#my-services h2 {
    color: #ff4f9f;
    font-size: 1.24em;
    font-weight: bold;
 }
 
-.my-services p {
+#my-services p {
    width: 80%;
    /* align-items: center; */
    margin: 0 auto 24px;
@@ -677,6 +675,10 @@ h1 {
       font-size: .82rem;
    }
 
+   #carousel-controls {
+      top: 65%;
+   }
+
    #carousel-controls button {
       font-size: 1.2em;
       padding: 10px;
@@ -717,8 +719,12 @@ h1 {
       height: 200px;
    }
 
+   div#images li {
+      margin-top: 40px;
+   }
+
    #carousel-controls button {
-      font-size: .8em;
+      font-size: 1.2em;
       padding: 6px;   
    }
    
@@ -730,9 +736,9 @@ h1 {
       font-size: .92em;
    }
 
-   h2 {
+   /* h2 {
       font-size: 1em;
-   }
+   } */
 
    .burger-menu {
       display: flex;
@@ -800,32 +806,25 @@ h1 {
       /* Prevent content from leaking through */
    }
 
-   #carousel-controls  {
-      /* display: none; */
-      /* font-size: 1em;
-      padding: 5px; */
+   #carousel-controls {
+      top: 55%;
    }
 
-      #carousel li span {
-         position: absolute;
-         top: 10px;
-         color: white;
-         /* Keep text white for contrast */
-         background: rgba(0, 0, 0, 0.4);
+   #carousel li span {
+      position: absolute;
+      top: 10px;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.4);
          /* Lighter background with 40% opacity */
-         padding: 6px 12px;
-         font-size: .68em;
-         /* border-radius: 8px;
-         font-weight: bold;
-         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); */
-      }
+      background: rgba(0, 0, 0, 0.4);
+         /* Lighter background with 40% opacity */
+      padding: 6px 12px;
+      font-size: .68em;
+   }
 
    #carousel li img {
       width: 60%;
-      /* max-width: 300%;
-      height: auto;
-      object-fit: contain; */
    }
 
    #services-carousel {
@@ -844,13 +843,13 @@ h1 {
       font-size: 1.2em;
    }
    
-   .my-services h2 {
+   #my-services h2 {
       margin: 20px 0 10px;
       /* width: 80%; */
       font-size: 1.2em;
    }
 
-   .my-services p {
+   #my-services p {
       width: 100%;
       /* margin: 0 auto; */
       font-size: .92em;
@@ -975,7 +974,7 @@ h1 {
 
 @media (max-width: 480px) {
    #carousel li img {
-      width: 80%;
+      width: 90%;
       /* max-width: 300%;
       height: auto;
       object-fit: contain; */
@@ -1006,7 +1005,7 @@ h1 {
    }
 
    h1.title {
-      font-size: .89em;
+      font-size: 1em;
    }
 
    hr {
