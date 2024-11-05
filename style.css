@@ -146,7 +146,6 @@ nav ul li a:hover {
 
 .title::before {
    margin-right: 12px;
-   /* Space between the line and the text */
 }
 
 .title::after {
@@ -271,8 +270,7 @@ p {
 }
 
 
-/* Sections */
-
+/* Welcome Sections */
 .welcome {
    padding: 10px 0 40px; 
 }
@@ -328,7 +326,7 @@ p {
    margin: 0 auto;
 }
 
-/* Create four equal columns that sits next to each other */
+/* Create 3 equal columns that sits next to each other */
 .column {
    -ms-flex: 33%;
    flex: 33%;
@@ -437,8 +435,6 @@ form button:hover {
    color: rgb(68, 67, 67);
 }
 
-
-
 ul#contact-info-wrapper {
    list-style: none;
    padding: 0;
@@ -518,7 +514,6 @@ h1 {
    margin: 40px auto 20px;
    text-align: center;
 }
-
 
 #appointment-form {
    align-items: center;
@@ -768,7 +763,6 @@ h1 {
    
    #my-services h2 {
       margin: 20px 0 10px;
-      /* width: 80%; */
       font-size: 1.2em;
    }
 
@@ -842,7 +836,6 @@ h1 {
       color: #fff;
       border: none;
       cursor: pointer;
-
    }
 
    #booking button:hover {
@@ -866,7 +859,6 @@ h1 {
       display: block;
       width: 68px;
    }
-
 
    #appointment-form {
       width: 60%;
