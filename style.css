@@ -109,7 +109,6 @@ nav ul li a {
    font-size: clamp(8px, 2.5vw, 14px);
    font-weight: 600;
    text-transform: uppercase;
-   /* color: #333; */
    color: rgb(255, 124, 121);
    text-decoration: none;
    transition: color 0.3s ease, transform 0.3s ease;
@@ -129,7 +128,6 @@ nav ul li a:hover {
    font-family: 'Playfair Display', serif;
    text-align: center;
    text-transform: uppercase;
-   /* color: rgb(219, 58, 66); */
    color: rgb(247, 84, 81);
    position: relative;
    margin: 30px 0 10px;
