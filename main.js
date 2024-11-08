@@ -1,3 +1,4 @@
+// DO NOT TOUCH THIS CODE!!!!!!!!!
 // Has an effect on page-load
 document.addEventListener("DOMContentLoaded", () => {
   const carousel = document.querySelector("#carousel");
@@ -115,6 +116,14 @@ burgerMenu.addEventListener('click', function() {
     servicesSection.style.marginTop ='0'
   }
 });
+// DO NOT TOUCH THIS CODE!!!!!!!!!
+// DO NOT TOUCH THIS CODE!!!!!!!!!
+// DO NOT TOUCH THIS CODE!!!!!!!!!
+// DO NOT TOUCH THIS CODE!!!!!!!!!
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -126,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Capture form values
             const name = document.getElementById('name').value;
             const service = document.getElementById('service').value;
-            const dateInput = document.getElementById('date').value; // Date in YYYY-MM-DD format
+            const dateInput = document.getElementById('date').value;
             const time = document.getElementById('time').value;
             const phone = document.getElementById('phone').value;
 
@@ -136,31 +145,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 return; // Stop further execution if any field is empty
             }
 
-            // Verify if selected date is in the future
-            const selectedDate = new Date(dateInput);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); // Set today's time to midnight for an accurate comparison
-
-            if (selectedDate < today) {
-                alert('Please select a future date for the appointment.');
-                return;
-            }
+            // Normalize the date to YYYY-MM-DD format
+            const date = new Date(dateInput).toISOString().split('T')[0];
 
             // Create an appointment object
-            const appointment = { name, service, date: dateInput, time, phone };
+            const appointment = { name, service, date, time, phone };
 
             // Error handling for localStorage access
             try {
                 // Retrieve existing appointments or initialize as an empty array
                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-
-                // Push the new appointment without restrictions
                 appointments.push(appointment);
                 localStorage.setItem('appointments', JSON.stringify(appointments));
                 
-                // Confirm the successful booking with debugging info
+                // Optional: Display a success message
                 alert('Appointment successfully booked!');
-                console.log("Appointments saved:", appointments);
 
                 // Clear the form fields
                 form.reset(); // Clears all form fields
@@ -173,108 +172,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const form = document.querySelector('form');
-//     if (form) {
-//         form.addEventListener('submit', function(event) {
-//             event.preventDefault(); // Prevent the default form submission
-
-//             // Capture form values
-//             const name = document.getElementById('name').value;
-//             const service = document.getElementById('service').value;
-//             const dateInput = document.getElementById('date').value; // Already in YYYY-MM-DD format
-//             const time = document.getElementById('time').value;
-//             const phone = document.getElementById('phone').value;
-
-//             // Ensure all form fields are filled, including phone
-//             if (!name || !service || !dateInput || !time || !phone) {
-//                 alert('Please fill in all fields, including the phone number.');
-//                 return; // Stop further execution if any field is empty
-//             }
-
-//             // Verify if selected date is in the future
-//             const selectedDate = new Date(dateInput);
-//             const today = new Date();
-//             today.setHours(0, 0, 0, 0); // Set today's time to midnight for an accurate comparison
-
-//             if (selectedDate < today) {
-//                 alert('Please select a future date for the appointment.');
-//                 return;
-//             }
-
-//             // Create an appointment object with the date as entered
-//             const appointment = { name, service, date: dateInput, time, phone };
-
-//             // Error handling for localStorage access
-//             try {
-//                 // Retrieve existing appointments or initialize as an empty array
-//                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-//                 appointments.push(appointment);
-//                 localStorage.setItem('appointments', JSON.stringify(appointments));
-                
-//                 // Optional: Display a success message
-//                 alert('Appointment successfully booked!');
-
-//                 // Clear the form fields
-//                 form.reset(); // Clears all form fields
-//                 document.getElementById('time').selectedIndex = 0; // Resets time dropdown to the default option
-
-//             } catch (error) {
-//                 console.error("Error accessing localStorage:", error);
-//                 alert("An error occurred while saving the appointment. Please try again.");
-//             }
-//         });
-//     }
-// });
-
-
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const form = document.querySelector('form');
-//     if (form) {
-//         form.addEventListener('submit', function(event) {
-//             event.preventDefault(); // Prevent the default form submission
-
-//             // Capture form values
-//             const name = document.getElementById('name').value;
-//             const service = document.getElementById('service').value;
-//             const dateInput = document.getElementById('date').value;
-//             const time = document.getElementById('time').value;
-//             const phone = document.getElementById('phone').value;
-
-//             // Ensure all form fields are filled, including phone
-//             if (!name || !service || !dateInput || !time || !phone) {
-//                 alert('Please fill in all fields, including the phone number.');
-//                 return; // Stop further execution if any field is empty
-//             }
-
-//             // Normalize the date to YYYY-MM-DD format
-//             const date = new Date(dateInput).toISOString().split('T')[0];
-
-//             // Create an appointment object
-//             const appointment = { name, service, date, time, phone };
-
-//             // Error handling for localStorage access
-//             try {
-//                 // Retrieve existing appointments or initialize as an empty array
-//                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-//                 appointments.push(appointment);
-//                 localStorage.setItem('appointments', JSON.stringify(appointments));
-                
-//                 // Optional: Display a success message
-//                 alert('Appointment successfully booked!');
-
-//                 // Clear the form fields
-//                 form.reset(); // Clears all form fields
-//                 document.getElementById('time').selectedIndex = 0; // Resets time dropdown to the default option
-
-//             } catch (error) {
-//                 console.error("Error accessing localStorage:", error);
-//                 alert("An error occurred while saving the appointment. Please try again.");
-//             }
-//         });
-//     }
-// });
