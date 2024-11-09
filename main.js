@@ -117,9 +117,6 @@ burgerMenu.addEventListener('click', function() {
   }
 });
 // DO NOT TOUCH THIS CODE!!!!!!!!!
-// DO NOT TOUCH THIS CODE!!!!!!!!!
-// DO NOT TOUCH THIS CODE!!!!!!!!!
-// DO NOT TOUCH THIS CODE!!!!!!!!!
 
 
 
