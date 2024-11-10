@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultView: 'month', // Sets the default view to month
             events: [], // Initializes with an empty array
             editable: true, // Optional: allows dragging and resizing of events
-            eventLimit: true, // Allows "more" link when too many events
+            eventLimit: false, // Allows "more" link when too many events
 
             // Handle event click to load details into the form for modification
             eventClick: function(event) {
