@@ -1,24 +1,7 @@
-// Load appointments from localStorage and display them on the appointment tracker page
-function loadAppointments() {
-    const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-
-    const events = appointments.map((appointment, index) => {
-        return {
-            id: index, // Use index as an ID to track the specific event
-            title: `${appointment.name} - ${appointment.service}`,
-            start: new Date(`${appointment.date}T${appointment.time}`), // Combine date and time
-            allDay: false // Set to false for specific time slots
-        };
-    });
-
-    // Initialize the calendar with these events
-    $('#calendar').fullCalendar('renderEvents', events, true); // Render events dynamically
-}
-
 // Call this function on page load in appointments.index.html
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const calendarElement = $('#calendar');
-    
+
     if (calendarElement.length) {
         calendarElement.fullCalendar({
             header: {
@@ -27,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 right: 'month,agendaWeek,agendaDay' // Include the view buttons
             },
             defaultView: 'month', // Sets the default view to month
-            events: [], // Initializes with an empty array
-            editable: true, // Optional: allows dragging and resizing of events
-            eventLimit: false, // Allows "more" link when too many events
+            editable: true, // Allows dragging and resizing of events
+            eventLimit: true, // Adds "more" link when too many events exist for a day
+            events: loadAppointments(), // Dynamically load appointments from localStorage
 
             // Handle event click to load details into the form for modification
-            eventClick: function(event) {
+            eventClick: function (event) {
                 const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-                
+
                 // Populate the form with the selected event's details
                 const selectedAppointment = appointments[event.id];
                 document.getElementById('name').value = selectedAppointment.name;
@@ -51,10 +34,82 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('delete-button').style.display = 'inline';
             }
         });
-
-        loadAppointments(); // Load all appointments into the calendar after initialization
     }
 });
+
+// Function to load appointments from localStorage
+function loadAppointments() {
+    const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+    // Map appointments to the format required by fullCalendar
+    return appointments.map((appointment, index) => {
+        const startDateTime = `${appointment.date}T${appointment.time}`;
+        return {
+            id: index, // Use the array index as the event ID
+            title: `${appointment.name} - ${appointment.service}`,
+            start: startDateTime,
+            allDay: false
+        };
+    });
+}
+
+// // Load appointments from localStorage and display them on the appointment tracker page
+// function loadAppointments() {
+//     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//     const events = appointments.map((appointment, index) => {
+//         return {
+//             id: index, // Use index as an ID to track the specific event
+//             title: `${appointment.name} - ${appointment.service}`,
+//             start: new Date(`${appointment.date}T${appointment.time}`), // Combine date and time
+//             allDay: false // Set to false for specific time slots
+//         };
+//     });
+
+//     // Initialize the calendar with these events
+//     $('#calendar').fullCalendar('renderEvents', events, true); // Render events dynamically
+// }
+
+// // Call this function on page load in appointments.index.html
+// document.addEventListener('DOMContentLoaded', function() {
+//     const calendarElement = $('#calendar');
+    
+//     if (calendarElement.length) {
+//         calendarElement.fullCalendar({
+//             header: {
+//                 left: 'prev,next today',
+//                 center: 'title',
+//                 right: 'month,agendaWeek,agendaDay' // Include the view buttons
+//             },
+//             defaultView: 'month', // Sets the default view to month
+//             events: [], // Initializes with an empty array
+//             editable: true, // Optional: allows dragging and resizing of events
+//             eventLimit: false, // Allows "more" link when too many events
+
+//             // Handle event click to load details into the form for modification
+//             eventClick: function(event) {
+//                 const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+                
+//                 // Populate the form with the selected event's details
+//                 const selectedAppointment = appointments[event.id];
+//                 document.getElementById('name').value = selectedAppointment.name;
+//                 document.getElementById('service').value = selectedAppointment.service;
+//                 document.getElementById('date').value = selectedAppointment.date;
+//                 document.getElementById('time').value = selectedAppointment.time;
+//                 document.getElementById('phone').value = selectedAppointment.phone;
+
+//                 // Store the event ID for later use (for modification and deletion)
+//                 window.currentEventId = event.id;
+
+//                 // Show modify and delete buttons
+//                 document.getElementById('modify-button').style.display = 'inline';
+//                 document.getElementById('delete-button').style.display = 'inline';
+//             }
+//         });
+
+//         loadAppointments(); // Load all appointments into the calendar after initialization
+//     }
+// });
 
 // Add new appointment functionality
 document.querySelector('form').addEventListener('submit', function(event) {
@@ -89,8 +144,45 @@ document.querySelector('form').addEventListener('submit', function(event) {
     clearForm();
 });
 
+function formatTimeTo24Hour(time) {
+    const [timePart, modifier] = time.trim().split(' '); // Split time and AM/PM
+    let [hours, minutes] = timePart.split(':'); // Split into hours and minutes
+
+    hours = parseInt(hours, 10); // Convert hours to an integer
+
+    if (modifier === 'PM' && hours < 12) {
+        hours += 12; // Add 12 to PM times except for 12 PM
+    } else if (modifier === 'AM' && hours === 12) {
+        hours = 0; // Convert 12 AM to 00
+    }
+
+    return `${hours.toString().padStart(2, '0')}:${minutes}`; // Return in HH:mm format
+}
+
+function isValidTime(time) {
+    const [hours, minutes] = time.split(':').map(Number); // Split time into hours and minutes
+    return hours >= 10 && hours <= 17; // Allow only times from 08:00 to 17:00
+}
+
+// function formatTimeTo24Hour(time) {
+//     const [timePart, modifier] = time.split(' ');
+//     let [hours, minutes] = timePart.split(':');
+//     if (modifier === 'PM' && hours !== '12') {
+//         hours = parseInt(hours, 10) + 12;
+//     }
+//     if (modifier === 'AM' && hours === '12') {
+//         hours = '00';
+//     }
+//     return `${hours}:${minutes}`;
+// }
+
+
 // Add new appointment
 function addNewAppointment(appointment) {
+    // Convert time to 24-hour format if necessary
+    const formattedTime = formatTimeTo24Hour(appointment.time); // Convert to 24-hour format
+    appointment.time = formattedTime;
+
     // Retrieve appointments from localStorage
     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
@@ -102,12 +194,31 @@ function addNewAppointment(appointment) {
     $('#calendar').fullCalendar('renderEvent', {
         id: appointments.length - 1, // Assign the ID based on the new length
         title: `${appointment.name} - ${appointment.service}`,
-        start: new Date(`${appointment.date}T${appointment.time}`),
+        start: new Date(`${appointment.date}T${formattedTime}`),
         allDay: false
     }, true);
 
     alert('Appointment successfully booked!');
 }
+
+// function addNewAppointment(appointment) {
+//     // Retrieve appointments from localStorage
+//     let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//     // Add new appointment to localStorage
+//     appointments.push(appointment);
+//     localStorage.setItem('appointments', JSON.stringify(appointments));
+
+//     // Add the new event to the calendar
+//     $('#calendar').fullCalendar('renderEvent', {
+//         id: appointments.length - 1, // Assign the ID based on the new length
+//         title: `${appointment.name} - ${appointment.service}`,
+//         start: new Date(`${appointment.date}T${appointment.time}`),
+//         allDay: false
+//     }, true);
+
+//     alert('Appointment successfully booked!');
+// }
 
 // Modify existing appointment when Modify button is clicked
 document.getElementById('modify-button').addEventListener('click', function() {
