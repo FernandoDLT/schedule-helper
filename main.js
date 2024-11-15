@@ -179,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const isConflict = appointments.some(
                     (appt) => appt.date === date && appt.time === time
                 );
+                
                 if (isConflict) {
                     alert('The selected time slot is already booked. Please choose another.');
                     return;
