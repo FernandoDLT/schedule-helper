@@ -53,11 +53,11 @@ function loadAppointments() {
     });
 }
 
-// Add new appointment functionality
+// Adds new appointment functionality
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevents form from reloading the page on submission
 
-    // Capture form values
+    // Captures form values
     const name = document.getElementById('name').value;
     const service = document.getElementById('service').value;
     const date = document.getElementById('date').value;
@@ -70,7 +70,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
         return;
     }
 
-    // Create an appointment object with date as a full datetime string
+    // Creates an appointment object with date as a full datetime string
     const appointment = {
         name,
         service,
@@ -79,10 +79,10 @@ document.querySelector('form').addEventListener('submit', function(event) {
         phone
     };
 
-    // Check if we are adding a new appointment
+    // Checks if we are adding a new appointment
     addNewAppointment(appointment);
 
-    // Clear the form fields after submission
+    // Clears the form fields after submission
     clearForm();
 });
 
