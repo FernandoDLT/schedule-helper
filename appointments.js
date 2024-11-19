@@ -1,4 +1,4 @@
-// Call this function on page load in appointments.index.html
+// Calls this function on page load in appointments.index.html
 document.addEventListener('DOMContentLoaded', function () {
     const calendarElement = $('#calendar');
 
@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
             defaultView: 'month', // Sets the default view to month
             editable: true, // Allows dragging and resizing of events
             eventLimit: true, // Adds "more" link when too many events exist for a day
-            events: loadAppointments(), // Dynamically load appointments from localStorage
+            events: loadAppointments(), // Dynamically loads appointments from localStorage
 
-            // Handle event click to load details into the form for modification
+            // Handles event click to load details into the form for modification
             eventClick: function (event) {
                 const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('time').value = selectedAppointment.time;
                 document.getElementById('phone').value = selectedAppointment.phone;
 
-                // Store the event ID for later use (for modification and deletion)
+                // Stores the event ID for later use (for modification and deletion)
                 window.currentEventId = event.id;
 
-                // Show modify and delete buttons
+                // Shows modify and delete buttons
                 document.getElementById('modify-button').style.display = 'inline';
                 document.getElementById('delete-button').style.display = 'inline';
             }
@@ -64,7 +64,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
     const time = document.getElementById('time').value;
     const phone = document.getElementById('phone').value;
 
-    // Ensure all form fields are filled
+    // Ensures all form fields are filled
     if (!name || !service || !date || !time || !phone) {
         alert('Please fill in all fields, including phone number.');
         return;
@@ -130,24 +130,24 @@ function addNewAppointment(appointment) {
     alert('Appointment successfully booked!');
 }
 
-// Modify existing appointment when Modify button is clicked
+// Modifies existing appointment when Modify button is clicked
 document.getElementById('modify-button').addEventListener('click', function() {
     // Check if there is an event to modify
     if (window.currentEventId !== undefined) {
-        // Capture updated form values
+        // Captures updated form values
         const name = document.getElementById('name').value;
         const service = document.getElementById('service').value;
         const date = document.getElementById('date').value;
         const time = document.getElementById('time').value;
         const phone = document.getElementById('phone').value;
 
-        // Ensure all form fields are filled
+        // Ensures all form fields are filled
         if (!name || !service || !date || !time || !phone) {
             alert('Please fill in all fields.');
             return;
         }
 
-        // Create the updated appointment object
+        // Creates the updated appointment object
         const updatedAppointment = {
             name,
             service,
