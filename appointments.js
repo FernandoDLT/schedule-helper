@@ -158,23 +158,23 @@ document.getElementById('modify-button').addEventListener('click', function() {
 
         let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
-        // Update the selected appointment in localStorage
+        // Updates the selected appointment in localStorage
         appointments[window.currentEventId] = updatedAppointment;
         localStorage.setItem('appointments', JSON.stringify(appointments));
 
-        // Get the existing event in the calendar
+        // Gets the existing event in the calendar
         const event = $('#calendar').fullCalendar('clientEvents', window.currentEventId)[0];
 
-        // Update event properties in the calendar
+        // Updates event properties in the calendar
         event.title = `${updatedAppointment.name} - ${updatedAppointment.service}`;
         event.start = new Date(`${updatedAppointment.date}T${updatedAppointment.time}`);
 
-        // Update the event in the calendar in real-time
+        // Updates the event in the calendar in real-time
         $('#calendar').fullCalendar('updateEvent', event);
 
         alert('Appointment modified successfully!');
 
-        // Clear the form after modification
+        // Clears the form after modification
         clearForm();
     } else {
         alert('No event selected to modify.');
