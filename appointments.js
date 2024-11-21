@@ -181,7 +181,7 @@ document.getElementById('modify-button').addEventListener('click', function() {
     }
 });
 
-// Clear the form fields
+// Clears the form fields
 function clearForm() {
     document.getElementById('name').value = '';
     document.getElementById('service').value = '';
@@ -189,11 +189,11 @@ function clearForm() {
     document.getElementById('time').value = '';
     document.getElementById('phone').value = '';
 
-    // Hide modify and delete buttons
+    // Hides modify and delete buttons
     document.getElementById('modify-button').style.display = 'none';
     document.getElementById('delete-button').style.display = 'none';
 
-    // Clear the stored event ID
+    // Clears the stored event ID
     window.currentEventId = undefined;
 }
 
@@ -202,18 +202,18 @@ document.getElementById('delete-button').addEventListener('click', function() {
     if (window.currentEventId !== undefined) {
         let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
-        // Remove the selected appointment from the array
+        // Removes the selected appointment from the array
         appointments.splice(window.currentEventId, 1);
 
-        // Store the updated appointments in localStorage
+        // Stores the updated appointments in localStorage
         localStorage.setItem('appointments', JSON.stringify(appointments));
 
-        // Remove the event from the calendar
+        // Removes the event from the calendar
         $('#calendar').fullCalendar('removeEvents', window.currentEventId);
 
         alert('Appointment deleted successfully!');
 
-        // Clear the form fields
+        // Clears the form fields
         clearForm();
     } else {
         alert('No appointment selected for deletion.');
