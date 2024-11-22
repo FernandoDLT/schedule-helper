@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let isTransitioning = false;
   const totalItems = carouselItems.length;
 
-  // Clone the first and last images to create a seamless transition
+  // Clones the first and last images to create a seamless transition
   const firstClone = carouselItems[0].cloneNode(true);
   const lastClone = carouselItems[totalItems - 1].cloneNode(true);
 
-  // Append and prepend the clones
+  // Appends and prepends the clones
   carousel.appendChild(firstClone);
   carousel.insertBefore(lastClone, carouselItems[0]);
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.style.transform = `translateX(${offset}%)`;
   }
 
-  // Handle the transition end only once
+  // Handles the transition end only once
   carousel.addEventListener("transitionend", () => {
     isTransitioning = false;
 
