@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Apply touch events only on small screens
+  // Applies touch events only on small screens
   if (window.innerWidth <= 770) {
     // Keep the event on li, which wraps the image
     carousel.addEventListener("touchstart", handleTouchStart);
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.addEventListener("touchend", handleTouchEnd);
   }
 
-  // Initialize with the first image displayed (which is the real second image due to clones)
+  // Initializs with the first image displayed (which is the real second image due to clones)
   currentIndex = 1;
   carousel.style.transform = `translateX(-100%)`; // Show the real first image
 });
@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (form) {
         form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault(); // Prevents default form submission
 
-            // Capture form values
+            // Captures form values
             const nameField = document.getElementById('name');
             const name = nameField.value;
             const service = document.getElementById('service').value;
