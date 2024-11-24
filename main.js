@@ -136,11 +136,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const time = document.getElementById('time').value;
             const phone = document.getElementById('phone').value;
 
-            // Clear previous error messages
+            // Clears previous error messages
             const errorMessages = document.querySelectorAll('.error-message');
             errorMessages.forEach((error) => (error.textContent = ''));
 
-            // Validate form fields
+            // Validates form fields
             let hasError = false;
 
             if (!name) {
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!service || !dateInput || !time || !phone) {
                 alert('Please fill in all fields, including the phone number.');
-                return; // Stop further execution if any field is empty
+                return; // Stops further execution if any field is empty
             }
 
             // Validate date and time
