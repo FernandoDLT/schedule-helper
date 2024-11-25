@@ -157,17 +157,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 return; // Stops further execution if any field is empty
             }
 
-            // Validate date and time
+            // Validates date and time
             const selectedDateTime = new Date(`${dateInput}T${time}`);
             if (selectedDateTime <= new Date()) {
                 alert('Please select a future date and time.');
                 return;
             }
 
-            // Normalize the date to YYYY-MM-DD format
+            // Normalizes the date to YYYY-MM-DD format
             const date = new Date(dateInput).toISOString().split('T')[0];
 
-            // Create an appointment object
+            // Creates an appointment object
             const appointment = { name, service, date, time, phone };
 
             // Error handling for localStorage access
