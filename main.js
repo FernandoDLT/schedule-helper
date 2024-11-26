@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Error handling for localStorage access
             try {
-                // Retrieve existing appointments or initialize as an empty array
+                // Retrieves existing appointments or initializes as an empty array
                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
-                // Check for conflicts
+                // Checks for conflicts
                 const isConflict = appointments.some(
                     (appt) => appt.date === date && appt.time === time
                 );
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // Add new appointment and save
+                // Adds new appointment and saves
                 appointments.push(appointment);
                 localStorage.setItem('appointments', JSON.stringify(appointments));
 
