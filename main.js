@@ -120,6 +120,109 @@ burgerMenu.addEventListener('click', function() {
 
 
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     const form = document.querySelector('form');
+//     const appointmentsList = document.getElementById('appointments-list'); // For displaying appointments
+
+//     if (form) {
+//         form.addEventListener('submit', function (event) {
+//             event.preventDefault(); // Prevents default form submission
+
+//             // Captures form values
+//             const nameField = document.getElementById('name');
+//             const name = nameField.value;
+//             const service = document.getElementById('service').value;
+//             const dateInput = document.getElementById('date').value;
+//             const time = document.getElementById('time').value;
+//             const phone = document.getElementById('phone').value;
+
+//             // Clears previous error messages
+//             const errorMessages = document.querySelectorAll('.error-message');
+//             errorMessages.forEach((error) => (error.textContent = ''));
+
+//             // Validates form fields
+//             let hasError = false;
+
+//             if (!name) {
+//                 hasError = true;
+//                 nameField.classList.add('error');
+//                 const error = nameField.nextElementSibling || document.createElement('span');
+//                 error.className = 'error-message';
+//                 error.textContent = 'Name is required.';
+//                 nameField.after(error);
+//             }
+
+//             if (!service || !dateInput || !time || !phone) {
+//                 alert('Please fill in all fields, including the phone number.');
+//                 return; // Stops further execution if any field is empty
+//             }
+
+//             // Validates date and time
+//             const selectedDateTime = new Date(`${dateInput}T${time}`);
+//             if (selectedDateTime <= new Date()) {
+//                 alert('Please select a future date and time.');
+//                 return;
+//             }
+
+//             // Normalizes the date to YYYY-MM-DD format
+//             const date = new Date(dateInput).toISOString().split('T')[0];
+
+//             // Creates an appointment object
+//             const appointment = { name, service, date, time, phone };
+
+//             // Error handling for localStorage access
+//             try {
+//                 // Retrieves existing appointments or initializes as an empty array
+//                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//                 // Checks for conflicts
+//                 const isConflict = appointments.some(
+//                     (appt) => appt.date === date && appt.time === time
+//                 );
+                
+//                 if (isConflict) {
+//                     alert('The selected time slot is already booked. Please choose another.');
+//                     return;
+//                 }
+
+//                 // Adds new appointment and saves
+//                 appointments.push(appointment);
+//                 localStorage.setItem('appointments', JSON.stringify(appointments));
+
+//                 // Optional: Display a success message
+//                 alert('Appointment successfully booked!');
+
+//                 // Clear the form fields
+//                 form.reset(); // Clears all form fields
+//                 document.getElementById('time').selectedIndex = 0; // Resets time dropdown to the default option
+
+//                 // Displays updated appointments
+//                 displayAppointments(appointmentsList, appointments);
+
+//             } catch (error) {
+//                 console.error('Error accessing localStorage:', error);
+//                 alert('An error occurred while saving the appointment. Please try again.');
+//             }
+//         });
+//     }
+
+//     // Displays existing appointments on page load
+//     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+//     displayAppointments(appointmentsList, appointments);
+// });
+
+// // Function to display appointments
+// function displayAppointments(appointmentsList, appointments) {
+//     if (appointmentsList) {
+//         appointmentsList.innerHTML = ''; // Clear existing appointments
+//         appointments.forEach((appointment) => {
+//             const listItem = document.createElement('li');
+//             listItem.textContent = `${appointment.date} ${appointment.time} - ${appointment.name} (${appointment.service}, ${appointment.phone})`;
+//             appointmentsList.appendChild(listItem);
+//         });
+//     }
+// }
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     const appointmentsList = document.getElementById('appointments-list'); // For displaying appointments
@@ -130,75 +233,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Captures form values
             const nameField = document.getElementById('name');
-            const name = nameField.value;
-            const service = document.getElementById('service').value;
-            const dateInput = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const phone = document.getElementById('phone').value;
-
-            // Clears previous error messages
-            const errorMessages = document.querySelectorAll('.error-message');
-            errorMessages.forEach((error) => (error.textContent = ''));
+            const name = nameField.value.trim();
+            const service = document.getElementById('service').value.trim();
+            const dateInput = document.getElementById('date').value.trim();
+            const timeInput = document.getElementById('time').value.trim();
+            const phone = document.getElementById('phone').value.trim();
 
             // Validates form fields
-            let hasError = false;
-
-            if (!name) {
-                hasError = true;
-                nameField.classList.add('error');
-                const error = nameField.nextElementSibling || document.createElement('span');
-                error.className = 'error-message';
-                error.textContent = 'Name is required.';
-                nameField.after(error);
-            }
-
-            if (!service || !dateInput || !time || !phone) {
+            if (!name || !service || !dateInput || !timeInput || !phone) {
                 alert('Please fill in all fields, including the phone number.');
-                return; // Stops further execution if any field is empty
+                return;
             }
 
             // Validates date and time
-            const selectedDateTime = new Date(`${dateInput}T${time}`);
+            const selectedDateTime = new Date(`${dateInput}T${timeInput}`);
             if (selectedDateTime <= new Date()) {
                 alert('Please select a future date and time.');
                 return;
             }
 
-            // Normalizes the date to YYYY-MM-DD format
-            const date = new Date(dateInput).toISOString().split('T')[0];
+            // Normalize date and time for conflict checking
+            const normalizedDate = new Date(dateInput).toISOString().split('T')[0];
+            const normalizedTime = timeInput.padStart(5, '0'); // Ensure time format is HH:mm
 
-            // Creates an appointment object
-            const appointment = { name, service, date, time, phone };
+            // Create an appointment object
+            const appointment = {
+                name,
+                service,
+                date: normalizedDate,
+                time: normalizedTime,
+                phone,
+            };
 
-            // Error handling for localStorage access
             try {
-                // Retrieves existing appointments or initializes as an empty array
+                // Retrieve existing appointments or initialize as an empty array
                 let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
-                // Checks for conflicts
+                // Check for conflicts
                 const isConflict = appointments.some(
-                    (appt) => appt.date === date && appt.time === time
+                    (appt) => appt.date === normalizedDate && appt.time === normalizedTime
                 );
-                
+
                 if (isConflict) {
                     alert('The selected time slot is already booked. Please choose another.');
                     return;
                 }
 
-                // Adds new appointment and saves
+                // Add new appointment and save
                 appointments.push(appointment);
                 localStorage.setItem('appointments', JSON.stringify(appointments));
 
-                // Optional: Display a success message
+                // Success message
                 alert('Appointment successfully booked!');
 
                 // Clear the form fields
-                form.reset(); // Clears all form fields
-                document.getElementById('time').selectedIndex = 0; // Resets time dropdown to the default option
+                form.reset();
 
-                // Displays updated appointments
+                // Update displayed appointments
                 displayAppointments(appointmentsList, appointments);
-
             } catch (error) {
                 console.error('Error accessing localStorage:', error);
                 alert('An error occurred while saving the appointment. Please try again.');
@@ -206,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Displays existing appointments on page load
+    // Display existing appointments on page load
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     displayAppointments(appointmentsList, appointments);
 });

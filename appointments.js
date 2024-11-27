@@ -1,4 +1,42 @@
 // Calls this function on page load in appointments.index.html
+// document.addEventListener('DOMContentLoaded', function () {
+//     const calendarElement = $('#calendar');
+
+//     if (calendarElement.length) {
+//         calendarElement.fullCalendar({
+//             header: {
+//                 left: 'prev,next today',
+//                 center: 'title',
+//                 right: 'month,agendaWeek,agendaDay' // Include the view buttons
+//             },
+//             defaultView: 'month', // Sets the default view to month
+//             editable: true, // Allows dragging and resizing of events
+//             eventLimit: true, // Adds "more" link when too many events exist for a day
+//             events: loadAppointments(), // Dynamically loads appointments from localStorage
+
+//             // Handles event click to load details into the form for modification
+//             eventClick: function (event) {
+//                 const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//                 // Populate the form with the selected event's details
+//                 const selectedAppointment = appointments[event.id];
+//                 document.getElementById('name').value = selectedAppointment.name;
+//                 document.getElementById('service').value = selectedAppointment.service;
+//                 document.getElementById('date').value = selectedAppointment.date;
+//                 document.getElementById('time').value = selectedAppointment.time;
+//                 document.getElementById('phone').value = selectedAppointment.phone;
+
+//                 // Stores the event ID for later use (for modification and deletion)
+//                 window.currentEventId = event.id;
+
+//                 // Shows modify and delete buttons
+//                 document.getElementById('modify-button').style.display = 'inline';
+//                 document.getElementById('delete-button').style.display = 'inline';
+//             }
+//         });
+//     }
+// });
+
 document.addEventListener('DOMContentLoaded', function () {
     const calendarElement = $('#calendar');
 
@@ -11,8 +49,14 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             defaultView: 'month', // Sets the default view to month
             editable: true, // Allows dragging and resizing of events
-            eventLimit: true, // Adds "more" link when too many events exist for a day
+            eventLimit: false, // Shows all events without limiting them
+            slotEventOverlap: true, // Allows overlapping events in the same slot
             events: loadAppointments(), // Dynamically loads appointments from localStorage
+
+            // Ensures all events render correctly, even if they overlap
+            eventRender: function (event, element) {
+                element.css('z-index', 1); // Prevent overlapping events from hiding
+            },
 
             // Handles event click to load details into the form for modification
             eventClick: function (event) {
@@ -36,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
 
 // Function to load appointments from localStorage
 function loadAppointments() {
