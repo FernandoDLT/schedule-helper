@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 form.reset(); // Clears all form fields
                 document.getElementById('time').selectedIndex = 0; // Resets time dropdown to the default option
 
-                // Display updated appointments
+                // Displays updated appointments
                 displayAppointments(appointmentsList, appointments);
 
             } catch (error) {
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Display existing appointments on page load
+    // Displays existing appointments on page load
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
     displayAppointments(appointmentsList, appointments);
 });
