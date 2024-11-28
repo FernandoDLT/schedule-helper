@@ -538,7 +538,6 @@ h1 {
 
 .fc-event-container {
    max-height: none !important;
-   /* Prevent height clipping for overflowing events */
 }
 
 #modify-button,
