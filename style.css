@@ -494,9 +494,10 @@ section p {
 /* Footer */
 footer p {
    text-align: center;
-   margin-top: 20px;
+   margin-top: 50px;
    font-size: clamp(12px, 3vw, 16px);
-   color: #ffb5d9;
+   color: rgb(255, 124, 121);
+   background: rgb(245, 245, 245);
 }
 
 h1 {
