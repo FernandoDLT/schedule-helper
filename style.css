@@ -299,14 +299,10 @@ p {
 }
 
 #my-services {
-   scroll-margin-top: 200px;
-   /* Adjust based on your navigation bar height */
-}
-
-#my-services {
    text-align: center;
    width: 80%;
    margin: 0 auto;
+   scroll-margin-top: 200px;
 }
 
 #my-services h2 {
