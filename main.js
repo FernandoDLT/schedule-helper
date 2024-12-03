@@ -1,4 +1,3 @@
-// DO NOT TOUCH THIS CODE!!!!!!!!!
 // Has an effect on page-load
 document.addEventListener("DOMContentLoaded", () => {
   const carousel = document.querySelector("#carousel");

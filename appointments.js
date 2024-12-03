@@ -1,42 +1,3 @@
-// Calls this function on page load in appointments.index.html
-// document.addEventListener('DOMContentLoaded', function () {
-//     const calendarElement = $('#calendar');
-
-//     if (calendarElement.length) {
-//         calendarElement.fullCalendar({
-//             header: {
-//                 left: 'prev,next today',
-//                 center: 'title',
-//                 right: 'month,agendaWeek,agendaDay' // Include the view buttons
-//             },
-//             defaultView: 'month', // Sets the default view to month
-//             editable: true, // Allows dragging and resizing of events
-//             eventLimit: true, // Adds "more" link when too many events exist for a day
-//             events: loadAppointments(), // Dynamically loads appointments from localStorage
-
-//             // Handles event click to load details into the form for modification
-//             eventClick: function (event) {
-//                 const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
-
-//                 // Populate the form with the selected event's details
-//                 const selectedAppointment = appointments[event.id];
-//                 document.getElementById('name').value = selectedAppointment.name;
-//                 document.getElementById('service').value = selectedAppointment.service;
-//                 document.getElementById('date').value = selectedAppointment.date;
-//                 document.getElementById('time').value = selectedAppointment.time;
-//                 document.getElementById('phone').value = selectedAppointment.phone;
-
-//                 // Stores the event ID for later use (for modification and deletion)
-//                 window.currentEventId = event.id;
-
-//                 // Shows modify and delete buttons
-//                 document.getElementById('modify-button').style.display = 'inline';
-//                 document.getElementById('delete-button').style.display = 'inline';
-//             }
-//         });
-//     }
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
     const calendarElement = $('#calendar');
 
@@ -83,20 +44,179 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Function to load appointments from localStorage
+// function loadAppointments() {
+//     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//     // Map appointments to the format required by fullCalendar
+//     return appointments.map((appointment, index) => {
+//         const startDateTime = `${appointment.date}T${appointment.time}`;
+        
+//         // Validate startDateTime
+//         const startDate = new Date(startDateTime);
+//         if (isNaN(startDate)) {
+//             console.error(`Invalid start date: ${startDateTime}`);
+//             return {}; // Return empty object for invalid start date
+//         }
+
+//         // Calculate the end time (1 hour later)
+//         const endDate = new Date(startDate); // Clone the start date object to get end time
+//         endDate.setHours(startDate.getHours() + 1); // Add 1 hour to the start time
+
+//         // Convert both start and end dates to ISO string, but ensure they're in the correct format
+//         const startISO = startDate.toISOString(); // Ensure start time is in ISO format
+//         const endISO = endDate.toISOString();     // Ensure end time is in ISO format
+
+//         return {
+//             id: index, // Use the array index as the event ID
+//             title: `${appointment.name} - ${appointment.service}`,
+//             start: startISO, // Set the correct start time in ISO format
+//             end: endISO,     // Set the correct end time in ISO format
+//             allDay: false     // Ensure it's not treated as an all-day event
+//         };
+//     }).filter(event => Object.keys(event).length > 0); // Remove invalid events
+// }
+
+// function loadAppointments() {
+//     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//     // Map appointments to the format required by fullCalendar
+//     return appointments.map((appointment, index) => {
+//         const startDateTime = `${appointment.date}T${appointment.time}`;
+//         return {
+//             id: index, // Use the array index as the event ID
+//             title: `${appointment.name} - ${appointment.service}`,
+//             start: startDateTime,
+//             allDay: false
+//         };
+//     });
+// }
+
+
+
+
+
+// Function to load appointments from localStorage
+// function loadAppointments() {
+//     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+//     // Map appointments to the format required by fullCalendar
+//     return appointments.map((appointment, index) => {
+//         const startDateTime = `${appointment.date}T${appointment.time}`;
+        
+//         // Parse the time correctly
+//         const startDate = parseAMPMTime(startDateTime);
+
+//         // Check if the date is valid
+//         if (isNaN(startDate)) {
+//             console.error(`Invalid start date: ${startDateTime}`);
+//             return {}; // Return empty object for invalid start date
+//         }
+
+//         // Calculate the end time (1 hour later)
+//         const endDate = new Date(startDate); // Clone the start date object to get end time
+//         endDate.setHours(startDate.getHours() + 1); // Add 1 hour to the start time
+
+//         // Return both start and end as local times
+//         const startLocal = startDate.toLocaleString(); // Use local time representation
+//         const endLocal = endDate.toLocaleString(); // Use local time representation
+
+//         return {
+//             id: index, // Use the array index as the event ID
+//             title: `${appointment.name} - ${appointment.service}`,
+//             start: startLocal, // Use local time as start
+//             end: endLocal,     // Use local time as end
+//             allDay: false       // Ensure it's not treated as an all-day event
+//         };
+//     }).filter(event => Object.keys(event).length > 0); // Remove invalid events
+// }
+
+// // Helper function to parse AM/PM time and return a valid Date object
+// function parseAMPMTime(dateTime) {
+//     const [date, timeWithAMPM] = dateTime.split('T'); // Split the date and time
+//     const [hoursMinutes, modifier] = timeWithAMPM.split(' '); // Split hours:minutes and AM/PM
+//     let [hours, minutes] = hoursMinutes.split(':'); // Split hours and minutes
+
+//     // Ensure hours and minutes are integers
+//     hours = parseInt(hours, 10);
+//     minutes = parseInt(minutes, 10);
+
+//     // Adjust hours based on AM/PM modifier
+//     if (modifier === 'PM' && hours < 12) {
+//         hours += 12; // Convert PM to 24-hour format
+//     } else if (modifier === 'AM' && hours === 12) {
+//         hours = 0; // Convert 12 AM to 00
+//     }
+
+//     // Construct the Date object using the current date and the parsed time
+//     const currentDate = new Date(date);
+//     currentDate.setHours(hours, minutes, 0, 0); // Set hours and minutes to the correct time
+
+//     return currentDate;
+// }
+
+
+// Function to load appointments from localStorage
 function loadAppointments() {
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
     // Map appointments to the format required by fullCalendar
     return appointments.map((appointment, index) => {
         const startDateTime = `${appointment.date}T${appointment.time}`;
+        
+        // Parse the time correctly
+        const startDate = parseAMPMTime(startDateTime);
+
+        // Check if the date is valid
+        if (isNaN(startDate)) {
+            console.error(`Invalid start date: ${startDateTime}`);
+            return {}; // Return empty object for invalid start date
+        }
+
+        // Calculate the end time (1 hour later)
+        const endDate = new Date(startDate); // Clone the start date object to get end time
+        endDate.setHours(startDate.getHours() + 1); // Add 1 hour to the start time
+
+        // Use toLocaleString to ensure correct local time format
+        const startLocal = startDate.toLocaleString(); // Local start time
+        const endLocal = endDate.toLocaleString(); // Local end time
+
         return {
             id: index, // Use the array index as the event ID
             title: `${appointment.name} - ${appointment.service}`,
-            start: startDateTime,
-            allDay: false
+            start: startLocal, // Use local time as start
+            end: endLocal,     // Use local time as end
+            allDay: false       // Ensure it's not treated as an all-day event
         };
-    });
+    }).filter(event => Object.keys(event).length > 0); // Remove invalid events
 }
+
+// Helper function to parse AM/PM time and return a valid Date object
+function parseAMPMTime(dateTime) {
+    const [date, timeWithAMPM] = dateTime.split('T'); // Split the date and time
+    const [hoursMinutes, modifier] = timeWithAMPM.split(' '); // Split hours:minutes and AM/PM
+    let [hours, minutes] = hoursMinutes.split(':'); // Split hours and minutes
+
+    // Ensure hours and minutes are integers
+    hours = parseInt(hours, 10);
+    minutes = parseInt(minutes, 10);
+
+    // Adjust hours based on AM/PM modifier
+    if (modifier === 'PM' && hours < 12) {
+        hours += 12; // Convert PM to 24-hour format
+    } else if (modifier === 'AM' && hours === 12) {
+        hours = 0; // Convert 12 AM to 00
+    }
+
+    // Manually construct the Date object with local time settings
+    const [year, month, day] = date.split('-'); // Split the date to year, month, day
+    const currentDate = new Date(); // Create a new Date object for local time
+    currentDate.setFullYear(year, month - 1, day); // Set the correct year, month, and day
+    currentDate.setHours(hours, minutes, 0, 0); // Set hours and minutes to the parsed time
+
+    return currentDate;
+}
+
+
 
 // Adds new appointment functionality
 document.querySelector('form').addEventListener('submit', function(event) {
