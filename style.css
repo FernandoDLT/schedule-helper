@@ -115,7 +115,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-   color: rgb(251, 84, 159);
+   color: rgb(255, 158, 156);
    text-decoration: underline;
    transform: scale(1.05);
 }
@@ -139,8 +139,8 @@ nav ul li a:hover {
    content: '';
    flex-grow: 1;
    height: .01rem;
-   background-color: rgb(193, 192, 192);
-   max-width: 200px;
+   background-color: rgb(255, 167, 166);
+   max-width: 240px;
 }
 
 .title::before {
@@ -316,6 +316,10 @@ p {
    margin: 0 auto 24px;
 }
 
+#gallery {
+   scroll-margin-top: 220px;
+}
+
 .row {
    display: -ms-flexbox;
    display: flex;
@@ -343,9 +347,9 @@ p {
 
 hr {
    width: 65%;
-   margin: 20px auto;
-   border: 1px solid rgb(216, 216, 216);
-   border-width: .05px;
+   margin: 20px auto 60px;
+   border: 0px solid rgb(255, 167, 166);
+   border-width: .01px;
 }
 
 #booking {
