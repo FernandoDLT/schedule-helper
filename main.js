@@ -212,6 +212,75 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+// Function to fetch and update the time slots for a specific date
+function updateTimeSlots(dateInput) {
+    // Get all appointments from localStorage
+    const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+
+    // Get the time slots dropdown
+    const timeDropdown = document.getElementById('time');
+    
+    // Clear existing options in the dropdown
+    timeDropdown.innerHTML = '';
+
+    // Define available time slots (you can modify this to suit your needs)
+    const availableTimes = [
+      '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
+      '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM', '05:00 PM',
+      '06:00 PM'
+    ];
+
+    // Normalize the selected date to match the format used in the appointments
+    const selectedDate = dateInput.split('T')[0];  // e.g., "2024-12-06"
+
+    // Loop through the available times and check if they are booked for the selected date
+    availableTimes.forEach((time) => {
+        // Check if the time is already booked on the selected date
+        const isBooked = appointments.some(
+            (appt) => appt.date === selectedDate && appt.time === convertTo24HourFormat(time)
+        );
+
+        // Create the option element for the dropdown
+        const option = document.createElement('option');
+        option.value = convertTo24HourFormat(time); // Store time in 24-hour format
+        // option.textContent = time;
+        option.textContent = isBooked ? `${time} - Unavailable` : `${time} - Available`;
+        
+        if (isBooked) {
+          option.disabled = true;  // Disable the option if it's already booked
+          option.style.color = 'gray';  // Optionally, gray out the text
+        }
+        else {
+          option.disabled = false;
+          option.style.color = 'green';
+        }              
+
+        // Append the option to the dropdown
+        timeDropdown.appendChild(option);
+    });
+}
+
+// Event listener for when the user selects a date
+document.getElementById('date').addEventListener('change', function (event) {
+    const selectedDate = event.target.value;
+    updateTimeSlots(selectedDate);
+});
+
+// Convert 12-hour time to 24-hour time (helper function)
+function convertTo24HourFormat(time12hr) {
+    const [time, period] = time12hr.split(" ");
+    let [hours, minutes] = time.split(":").map(num => parseInt(num));
+
+    if (period === "PM" && hours !== 12) {
+        hours += 12; // Convert PM times to 24-hour format, except for 12 PM
+    }
+    if (period === "AM" && hours === 12) {
+        hours = 0; // Convert 12 AM to 00 hours
+    }
+
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
 // document.addEventListener("DOMContentLoaded", () => {
 //   const carousel = document.querySelector("#carousel");
 //   const carouselItems = document.querySelectorAll("#carousel li"); // li wraps the img
