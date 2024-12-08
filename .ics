@@ -1,0 +1,43 @@
+function generateICS(appointment) {
+    const name = appointment.name;
+    const service = appointment.service;
+    const date = appointment.date;
+    const time = appointment.time;
+    const phone = appointment.phone;
+
+    const startDateTime = new Date(`${date}T${time}:00`);
+    const endDateTime = new Date(startDateTime);
+    endDateTime.setHours(startDateTime.getHours() + 1); // 1-hour duration for appointment
+
+    const startFormatted = startDateTime.toISOString().replace(/[-:]/g, '').split('.')[0];
+    const endFormatted = endDateTime.toISOString().replace(/[-:]/g, '').split('.')[0];
+
+    const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${name} - ${service}
+DESCRIPTION:Phone: ${phone}
+LOCATION:${service}
+DTSTART:${startFormatted}
+DTEND:${endFormatted}
+END:VEVENT
+END:VCALENDAR
+    `;
+
+    const blob = new Blob([icsContent], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    
+    // Send this URL as an attachment or open it in the admin's browser
+    sendEmailToAdmin(url); // This function can send an email with the .ics file attached
+}
+
+// This could be done via an email API like SendGrid or Mailgun, or using server-side code
+function sendEmailToAdmin(fileUrl) {
+    const adminEmail = 'ferchodlt1971@gmail.com.com';
+    const subject = 'New Appointment Booking';
+    const body = `A new appointment has been booked. You can review and confirm the appointment by clicking the link below:
+    ${fileUrl}`;
+    
+    // Use a service to send the email with the .ics file or link to the admin
+}
