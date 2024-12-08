@@ -104,7 +104,6 @@ function parseAMPMTime(dateTime) {
 }
 
 
-
 // Adds new appointment functionality
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevents form from reloading the page on submission

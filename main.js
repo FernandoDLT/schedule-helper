@@ -95,6 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
   prevButton.addEventListener("click", () => clearInterval(autoplayInterval));
 });
 
+
+
+
+
 // Function to convert 12-hour format to 24-hour format
 function convertTo24HourFormat(time12hr) {
     const [time, period] = time12hr.split(" ");
@@ -498,19 +502,19 @@ function convertTo24HourFormat(time12hr) {
 //   carousel.style.transform = `translateX(-100%)`; // Show the real first image
 // });
 
-// const burgerMenu = document.querySelector('.burger-menu');
-// const navContainer = document.querySelector('.nav-container');
-// const servicesSection = document.querySelector('#services-carousel');
+const burgerMenu = document.querySelector('.burger-menu');
+const navContainer = document.querySelector('.nav-container');
+const servicesSection = document.querySelector('#services-carousel');
 
-// burgerMenu.addEventListener('click', function() {
-//   navContainer.classList.toggle('nav-open');
+burgerMenu.addEventListener('click', function() {
+  navContainer.classList.toggle('nav-open');
 
-//   if (navContainer.classList.contains('nav-open')) {
-//     servicesSection.style.marginTop = '260px'
-//   } else {
-//     servicesSection.style.marginTop ='0'
-//   }
-// });
+  if (navContainer.classList.contains('nav-open')) {
+    servicesSection.style.marginTop = '260px'
+  } else {
+    servicesSection.style.marginTop ='0'
+  }
+});
 // DO NOT TOUCH THIS CODE!!!!!!!!!
 
 
