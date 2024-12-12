@@ -143,22 +143,20 @@
    <section id="booking">
       <h2>Book an Appointment</h2>
       <div class="form-and-info">
-         <form>            
+         <form action="/book" method="POST">
             <label for="name">Your Name:</label>
             <input type="text" id="name" name="name" required>
-            
-            <!-- Services Drop Down -->
+         
             <label for="service">Choose a Service:</label>
-            <select id="service" name="service">
+            <select id="service" name="service" required>
                <option value="manicure">Manicure</option>
                <option value="pedicure">Pedicure</option>
                <option value="gel-manicure">Gel Manicure</option>
             </select>
-            
+         
             <label for="date">Select Date:</label>
             <input type="date" id="date" name="date" required>
-            
-            <!-- Schedule -->
+         
             <label for="time">Select Time:</label>
             <select id="time" name="time" required>
                <option value="" disabled selected>Select Time</option>
@@ -171,17 +169,16 @@
                <option value="3:00 PM">3:00 PM</option>
                <option value="4:00 PM">4:00 PM</option>
             </select>
-
+         
             <label for="phone">Phone Number:</label>
-            <!-- <input type="tel" id="phone" name="phone" required-pattern="[0-9]{10}" placeholder="123456789"> -->
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="123456789">
-
-
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="123456789" required>
+         
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
-            
+         
             <button type="submit">Book Appointment</button>
          </form>
+         
                   
          <!-- Contact information -->
          <div id="contact-info-wrapper">
@@ -210,11 +207,11 @@
       </div>
    </section>
 
-   
    <!-- Footer Section -->
    <footer>
       <p>&copy; 2024 SD Nails. All rights reserved.</p>
    </footer>
+   
 
    <script src="main.js"></script>
 </body>

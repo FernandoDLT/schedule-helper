@@ -1,51 +1,43 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
-const path = require('path');
+const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
-// Serve static files (HTML, CSS, JS)
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'));  // Assuming CSS is inside the 'public' folder
+// Serve static files
+app.use(express.static('public'));
 
+// Handle form submission
+app.post('/book', (req, res) => {
+    const { name, service, date, time, phone, email } = req.body;
 
-// Home route to serve the form
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+    // Respond to the client immediately
+    res.send('Appointment booked successfully!');
 
-// Handle form submission and send email
-app.post('/submit-appointment', (req, res) => {
-    const { name, email, appointmentDate, details } = req.body;
-
-    // Generate email content
+    const adminEmail = 'ferchodlt1971@gmail.com'; // Replace with your admin email
     const subject = 'New Appointment Booking';
     const body = `
-    A new appointment has been booked with the following details:
-    - Name: ${name}
-    - Email: ${email}
-    - Appointment Date: ${appointmentDate}
-    - Details: ${details}
+        A new appointment has been booked:
+        Name: ${name}
+        Service: ${service}
+        Date: ${date}
+        Time: ${time}
+        Phone: ${phone}
+        Email: ${email}
     `;
 
-    // Send the email (update the transporter with your actual credentials)
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'ferchodlt1971@hotmail.com',  // Your email address
-            pass: 'vnbnwqnirqrllcdn',  // Your app password  
+            user: 'ferchodlt1971@gmail.com',
+            pass: 'vnbnwqnirqrllcdn',
         },
     });
 
     const mailOptions = {
-        from: 'ferchodlt1971@hotmail.com',
-        to: 'ferchodlt1971@hotmail.com', // Admin's email
+        from: 'ferchodlt1971@gmail.com',
+        to: adminEmail,
         subject: subject,
         text: body,
     };
@@ -53,18 +45,13 @@ app.post('/submit-appointment', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log('Error sending email: ', error);
-            res.status(500).send('Error sending email.');
+            res.status(500).send('Error sending email');
         } else {
             console.log('Email sent: ' + info.response);
-            res.send('Appointment submitted successfully!');
+            res.send('Appointment booked successfully');
         }
     });
 });
-
-// Start the server
-// app.listen(PORT, () => {
-//     console.log(`Server is running on http://localhost:${PORT}`);
-// });
 
 app.listen(3000, () => {
     console.log('Server running on port 3000');

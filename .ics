@@ -13,16 +13,16 @@ function generateICS(appointment) {
     const endFormatted = endDateTime.toISOString().replace(/[-:]/g, '').split('.')[0];
 
     const icsContent = `
-BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-SUMMARY:${name} - ${service}
-DESCRIPTION:Phone: ${phone}
-LOCATION:${service}
-DTSTART:${startFormatted}
-DTEND:${endFormatted}
-END:VEVENT
-END:VCALENDAR
+      BEGIN:VCALENDAR
+      VERSION:2.0
+      BEGIN:VEVENT
+      SUMMARY:${name} - ${service}
+      DESCRIPTION:Phone: ${phone}
+      LOCATION:${service}
+      DTSTART:${startFormatted}
+      DTEND:${endFormatted}
+      END:VEVENT
+      END:VCALENDAR
     `;
 
     const blob = new Blob([icsContent], { type: 'text/calendar' });
