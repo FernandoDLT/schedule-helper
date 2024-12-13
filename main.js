@@ -128,93 +128,99 @@ function displayAppointments(appointmentsList, appointments) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
-    const appointmentsList = document.getElementById('appointments-list'); // For displaying appointments
+// document.addEventListener('DOMContentLoaded', function () {
+//     const form = document.querySelector('form');
+//     const appointmentsList = document.getElementById('appointments-list'); // For displaying appointments
 
-    // Initialize appointments
-    const appointments = getAppointments();
-    displayAppointments(appointmentsList, appointments);
+//     // Initialize appointments
+//     const appointments = getAppointments();
+//     displayAppointments(appointmentsList, appointments);
 
-    if (form) {
-        form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevents default form submission
+//     if (form) {
+//         form.addEventListener('submit', function (event) {
+//             event.preventDefault(); // Prevents default form submission
 
-            // Captures form values
-            const formElements = {
-                name: document.getElementById('name').value.trim(),
-                service: document.getElementById('service').value.trim(),
-                date: document.getElementById('date').value.trim(),
-                time: document.getElementById('time').value.trim(),
-                phone: document.getElementById('phone').value.trim()
-            };
+//             // Captures form values
+//             const formElements = {
+//                 name: document.getElementById('name').value.trim(),
+//                 service: document.getElementById('service').value.trim(),
+//                 date: document.getElementById('date').value.trim(),
+//                 time: document.getElementById('time').value.trim(),
+//                 phone: document.getElementById('phone').value.trim()
+//             };
 
-            // Validates form fields
-            if (Object.values(formElements).some(value => !value)) {
-                alert('Please fill in all fields, including the phone number.');
-                return;
-            }
+//             // Validates form fields
+//             if (Object.values(formElements).some(value => !value)) {
+//                 alert('Please fill in all fields, including the phone number.');
+//                 return;
+//             }
 
-            // Convert 12-hour time to 24-hour time
-            const adjustedTime = convertTo24HourFormat(formElements.time);
+//             // Convert 12-hour time to 24-hour time
+//             const adjustedTime = convertTo24HourFormat(formElements.time);
 
-            console.log('Converted Time:', adjustedTime); // Log converted time to verify
+//             console.log('Converted Time:', adjustedTime); // Log converted time to verify
 
-            // Combine the date and adjusted time, then ensure consistent format
-            const selectedDateTime = new Date(`${formElements.date}T${adjustedTime}:00`);
+//             // Combine the date and adjusted time, then ensure consistent format
+//             const selectedDateTime = new Date(`${formElements.date}T${adjustedTime}:00`);
 
-            // Validate if the selected time is in the future
-            if (selectedDateTime <= new Date()) {
-                alert('Please select a future date and time.');
-                return;
-            }
+//             // Validate if the selected time is in the future
+//             if (selectedDateTime <= new Date()) {
+//                 alert('Please select a future date and time.');
+//                 return;
+//             }
 
-            // Normalize date and time for conflict checking (store time consistently)
-            const normalizedDate = new Date(formElements.date).toISOString().split('T')[0]; // Date in YYYY-MM-DD format
-            const normalizedTime = adjustedTime.padStart(5, '0'); // Ensure time format is HH:mm
+//             // Normalize date and time for conflict checking (store time consistently)
+//             const normalizedDate = new Date(formElements.date).toISOString().split('T')[0]; // Date in YYYY-MM-DD format
+//             const normalizedTime = adjustedTime.padStart(5, '0'); // Ensure time format is HH:mm
 
-            // Check for conflicts: Corrected comparison to check both date and time
-            const isConflict = appointments.some(
-                (appt) => appt.date === normalizedDate && appt.time === normalizedTime
-            );
+//             // Check for conflicts: Corrected comparison to check both date and time
+//             const isConflict = appointments.some(
+//                 (appt) => appt.date === normalizedDate && appt.time === normalizedTime
+//             );
 
-            if (isConflict) {
-                alert('The selected time slot is already booked. Please choose another.');
-                return;
-            }
+//             if (isConflict) {
+//                 alert('The selected time slot is already booked. Please choose another.');
+//                 return;
+//             }
 
-            // Create an appointment object
-            const appointment = {
-                name: formElements.name,
-                service: formElements.service,
-                date: normalizedDate,
-                time: normalizedTime,
-                phone: formElements.phone
-            };
+//             // Create an appointment object
+//             const appointment = {
+//                 name: formElements.name,
+//                 service: formElements.service,
+//                 date: normalizedDate,
+//                 time: normalizedTime,
+//                 phone: formElements.phone
+//             };
 
-            try {
-                // Add new appointment and save to localStorage
-                appointments.push(appointment);
-                localStorage.setItem('appointments', JSON.stringify(appointments));
+//             try {
+//                 // Add new appointment and save to localStorage
+//                 appointments.push(appointment);
+//                 localStorage.setItem('appointments', JSON.stringify(appointments));
 
-                // Success message
-                alert('Appointment successfully booked!');
+//                 // Success message
+//                 alert('Appointment successfully booked!');
 
-                // Clear the form fields
-                form.reset();
+//                 // Clear the form fields
+//                 form.reset();
 
-                // Update displayed appointments
-                displayAppointments(appointmentsList, appointments);
-            } catch (error) {
-                console.error('Error accessing localStorage:', error);
-                alert('An error occurred while saving the appointment. Please try again.');
-            }
-        });
-    }
-});
+//                 // Update displayed appointments
+//                 displayAppointments(appointmentsList, appointments);
+//             } catch (error) {
+//                 console.error('Error accessing localStorage:', error);
+//                 alert('An error occurred while saving the appointment. Please try again.');
+//             }
+//         });
+//     }
+// });
+
+
 
 
 // Function to fetch and update the time slots for a specific date
+
+
+
+
 function updateTimeSlots(dateInput) {
     // Get all appointments from localStorage
     const appointments = JSON.parse(localStorage.getItem('appointments')) || [];
