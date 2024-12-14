@@ -218,6 +218,50 @@ function displayAppointments(appointmentsList, appointments) {
 
 // Function to fetch and update the time slots for a specific date
 
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('form');
+    
+    if (form) {
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent default navigation behavior
+
+            const formData = new FormData(form);
+            const appointment = {
+                name: formData.get('name'),
+                service: formData.get('service'),
+                date: formData.get('date'),
+                time: formData.get('time'),
+                phone: formData.get('phone'),
+                email: formData.get('email')
+            };
+
+            if (Object.values(appointment).some(value => !value.trim())) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(appointment)
+                });
+
+                if (response.ok) {
+                    alert('Appointment booked successfully!');
+
+                    // Explicitly redirect to the home page
+                    window.location.href = '/';
+                } else {
+                    alert('Error booking appointment. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    }
+});
 
 
 
