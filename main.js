@@ -128,102 +128,69 @@ function displayAppointments(appointmentsList, appointments) {
     }
 }
 
+// Function to fetch and update the time slots for a specific date
 // document.addEventListener('DOMContentLoaded', function () {
 //     const form = document.querySelector('form');
-//     const appointmentsList = document.getElementById('appointments-list'); // For displaying appointments
-
-//     // Initialize appointments
-//     const appointments = getAppointments();
-//     displayAppointments(appointmentsList, appointments);
-
+    
 //     if (form) {
-//         form.addEventListener('submit', function (event) {
-//             event.preventDefault(); // Prevents default form submission
+//         form.addEventListener('submit', async function (event) {
+//             event.preventDefault(); // Prevent default navigation behavior
 
-//             // Captures form values
-//             const formElements = {
-//                 name: document.getElementById('name').value.trim(),
-//                 service: document.getElementById('service').value.trim(),
-//                 date: document.getElementById('date').value.trim(),
-//                 time: document.getElementById('time').value.trim(),
-//                 phone: document.getElementById('phone').value.trim()
-//             };
-
-//             // Validates form fields
-//             if (Object.values(formElements).some(value => !value)) {
-//                 alert('Please fill in all fields, including the phone number.');
-//                 return;
-//             }
-
-//             // Convert 12-hour time to 24-hour time
-//             const adjustedTime = convertTo24HourFormat(formElements.time);
-
-//             console.log('Converted Time:', adjustedTime); // Log converted time to verify
-
-//             // Combine the date and adjusted time, then ensure consistent format
-//             const selectedDateTime = new Date(`${formElements.date}T${adjustedTime}:00`);
-
-//             // Validate if the selected time is in the future
-//             if (selectedDateTime <= new Date()) {
-//                 alert('Please select a future date and time.');
-//                 return;
-//             }
-
-//             // Normalize date and time for conflict checking (store time consistently)
-//             const normalizedDate = new Date(formElements.date).toISOString().split('T')[0]; // Date in YYYY-MM-DD format
-//             const normalizedTime = adjustedTime.padStart(5, '0'); // Ensure time format is HH:mm
-
-//             // Check for conflicts: Corrected comparison to check both date and time
-//             const isConflict = appointments.some(
-//                 (appt) => appt.date === normalizedDate && appt.time === normalizedTime
-//             );
-
-//             if (isConflict) {
-//                 alert('The selected time slot is already booked. Please choose another.');
-//                 return;
-//             }
-
-//             // Create an appointment object
+//             const formData = new FormData(form);
 //             const appointment = {
-//                 name: formElements.name,
-//                 service: formElements.service,
-//                 date: normalizedDate,
-//                 time: normalizedTime,
-//                 phone: formElements.phone
+//                 name: formData.get('name'),
+//                 service: formData.get('service'),
+//                 date: formData.get('date'),
+//                 time: formData.get('time'),
+//                 phone: formData.get('phone'),
+//                 email: formData.get('email')
 //             };
+
+//             if (Object.values(appointment).some(value => !value.trim())) {
+//                 alert('Please fill out all fields.');
+//                 return;
+//             }
 
 //             try {
-//                 // Add new appointment and save to localStorage
-//                 appointments.push(appointment);
-//                 localStorage.setItem('appointments', JSON.stringify(appointments));
+//                 const response = await fetch('/book', {
+//                     method: 'POST',
+//                     headers: { 'Content-Type': 'application/json' },
+//                     body: JSON.stringify(appointment)
+//                 });
 
-//                 // Success message
-//                 alert('Appointment successfully booked!');
-
-//                 // Clear the form fields
-//                 form.reset();
-
-//                 // Update displayed appointments
-//                 displayAppointments(appointmentsList, appointments);
+//                 if (response.ok) {
+//                   // alert('Appointment booked successfully!');
+//                   alert(`Appointment booked successfully!
+//                   Name: ${appointment.name}
+//                   Service: ${appointment.service}
+//                   Date: ${appointment.date}
+//                   Time: ${appointment.time}
+//                   Phone: ${appointment.phone}
+//                   Email: ${appointment.email}`);
+                  
+//                   // Explicitly redirect to the home page
+//                   window.location.href = '/';
+                  
+//                 } else {
+//                     alert('Error booking appointment. Please try again.');
+//                 }
 //             } catch (error) {
-//                 console.error('Error accessing localStorage:', error);
-//                 alert('An error occurred while saving the appointment. Please try again.');
+//                 console.error('Error:', error);
+//                 alert('An error occurred. Please try again.');
 //             }
 //         });
 //     }
 // });
 
 
-
-
-// Function to fetch and update the time slots for a specific date
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
-    
+    const confirmationCard = document.getElementById('confirmation-card');
+    const submitButton = form.querySelector('button');
+
     if (form) {
         form.addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent default navigation behavior
+            event.preventDefault(); // Prevent default form submission (no page reload)
 
             const formData = new FormData(form);
             const appointment = {
@@ -248,10 +215,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response.ok) {
-                    alert('Appointment booked successfully!');
+                    // Hide the form and show the success card
+                    form.style.display = 'none';
+                    confirmationCard.classList.remove('hide'); // Show success card
 
-                    // Explicitly redirect to the home page
-                    window.location.href = '/';
                 } else {
                     alert('Error booking appointment. Please try again.');
                 }
