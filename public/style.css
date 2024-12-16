@@ -439,10 +439,6 @@ form button:hover {
    color: rgb(68, 67, 67);
 }
 
-#contact-info-wrapper {
-   flex: 1 1 35%;
-}
-
 ul#contact-info-wrapper {
    list-style: none;
    padding: 0;
@@ -524,14 +520,10 @@ h1 {
    text-align: center;
 }
 
-/* #appointment-form {
+#appointment-form {
    align-items: center;
    width: 40%;
    margin: 0 auto;
-} */
-
-#appointment-form {
-   flex: 1 1 60%;
 }
 
 #appointment-form label {
@@ -551,7 +543,7 @@ h1 {
 }
 
 .hide {
-   display: none !important;
+   display: none;
 }
 
 .fc-event-container {
@@ -793,18 +785,12 @@ h1 {
    }
 
    /* Stacks the contact details, business hours, and booking section vertically */
-   /* .form-and-info {
+   .form-and-info {
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
-   } */
 
-      .form-and-info {
-         display: flex;
-         flex-wrap: wrap;
-         gap: 20px;
-         justify-content: space-between;
-      }
+   }
 
    #contact-info-wrapper {
       display: flex;

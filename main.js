@@ -129,68 +129,12 @@ function displayAppointments(appointmentsList, appointments) {
 }
 
 // Function to fetch and update the time slots for a specific date
-// document.addEventListener('DOMContentLoaded', function () {
-//     const form = document.querySelector('form');
-    
-//     if (form) {
-//         form.addEventListener('submit', async function (event) {
-//             event.preventDefault(); // Prevent default navigation behavior
-
-//             const formData = new FormData(form);
-//             const appointment = {
-//                 name: formData.get('name'),
-//                 service: formData.get('service'),
-//                 date: formData.get('date'),
-//                 time: formData.get('time'),
-//                 phone: formData.get('phone'),
-//                 email: formData.get('email')
-//             };
-
-//             if (Object.values(appointment).some(value => !value.trim())) {
-//                 alert('Please fill out all fields.');
-//                 return;
-//             }
-
-//             try {
-//                 const response = await fetch('/book', {
-//                     method: 'POST',
-//                     headers: { 'Content-Type': 'application/json' },
-//                     body: JSON.stringify(appointment)
-//                 });
-
-//                 if (response.ok) {
-//                   // alert('Appointment booked successfully!');
-//                   alert(`Appointment booked successfully!
-//                   Name: ${appointment.name}
-//                   Service: ${appointment.service}
-//                   Date: ${appointment.date}
-//                   Time: ${appointment.time}
-//                   Phone: ${appointment.phone}
-//                   Email: ${appointment.email}`);
-                  
-//                   // Explicitly redirect to the home page
-//                   window.location.href = '/';
-                  
-//                 } else {
-//                     alert('Error booking appointment. Please try again.');
-//                 }
-//             } catch (error) {
-//                 console.error('Error:', error);
-//                 alert('An error occurred. Please try again.');
-//             }
-//         });
-//     }
-// });
-
-
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
-    const confirmationCard = document.getElementById('confirmation-card');
-    const submitButton = form.querySelector('button');
-
+    
     if (form) {
         form.addEventListener('submit', async function (event) {
-            event.preventDefault(); // Prevent default form submission (no page reload)
+            event.preventDefault(); // Prevent default navigation behavior
 
             const formData = new FormData(form);
             const appointment = {
@@ -215,10 +159,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response.ok) {
-                    // Hide the form and show the success card
-                    form.style.display = 'none';
-                    confirmationCard.classList.remove('hide'); // Show success card
-
+                  // alert('Appointment booked successfully!');
+                  alert(`Appointment booked successfully!
+                  Name: ${appointment.name}
+                  Service: ${appointment.service}
+                  Date: ${appointment.date}
+                  Time: ${appointment.time}
+                  Phone: ${appointment.phone}
+                  Email: ${appointment.email}`);
+                  
+                  // Explicitly redirect to the home page
+                  window.location.href = '/';
+                  
                 } else {
                     alert('Error booking appointment. Please try again.');
                 }
